@@ -35,6 +35,12 @@ $(function() {
     ];
 
     $("body").height(window.innerHeight);
+    function handleResize() {
+        $("body").height(window.innerHeight);
+        $("#iFrameContainer iframe:not(.inactiveFrame)").innerHeight(window.innerHeight);
+    }
+    $(window).resize(handleResize)
+
 
     function createElement(elementType) {
         return $(document.createElement(elementType));
@@ -69,20 +75,20 @@ $(function() {
     }
     createSidebarTabsAnd_iFrames();
 
-    
+
 
     $("#sidebar-wrapper li").click(function() {
         var listItem = $(this),
             iFrameContainer = $("#iFrameContainer"),
             iframeIndex = listItem.attr("tabIndex");
-        iFrameContainer.find("iframe").addClass("inactiveFrame");
+        iFrameContainer.find("iframe").addClass("inactiveFrame").innerHeight("");
         $("#sidebar-wrapper li").removeClass("active");
         
         var selectedIframe = iFrameContainer.find("iframe[tabIndex='" + iframeIndex + "']");
         if (!selectedIframe.length) {
             selectedIframe = iFrameContainer.find("iframe[tabIndex='0']");
         }
-        selectedIframe.removeClass("inactiveFrame");
+        selectedIframe.removeClass("inactiveFrame").innerHeight($("body").innerHeight());
         listItem.addClass("active")
     });
 });
