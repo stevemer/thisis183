@@ -65,12 +65,12 @@ $(function() {
 
         $("#sidebar-wrapper ul").append(listItem);
     }
-    function append_iFrame(iframeSource, index) {
+    function append_iFrame(iframeSource, index, isInactive) {
         var iFrame = createElement("iframe").attr("frameborder", "0").addClass("pageContent row-fluid");
         iFrame.attr("tabIndex", index).attr("src", iframeSource);
 
-        // if (index != "0")
-        //     iFrame.addClass("inactiveFrame");
+        if (isInactive)
+            iFrame.addClass("inactiveFrame");
 
         $("#iFrameContainer").append(iFrame);
     }
@@ -83,22 +83,38 @@ $(function() {
             iFrameContainer = $("#iFrameContainer"),
             currentiFrame = iFrameContainer.find("iframe[tabIndex='" + _currentTab + "']"),
             newTabIndex = $(this).attr("tabIndex"),
-            newiFrame = iFrameContainer.find("iframe[tabIndex='" + newTabIndex + "']");
+            newiFrame = iFrameContainer.find("iframe[tabIndex='" + newTabIndex + "']"),
+            loadingNewiFrame = false;
         
+        
+        // iframe not present, create a new one
         if (!newiFrame.length) {
             var newSource = _sidebarTabs[newTabIndex].iframeSource;
+            loadingNewiFrame = true;
             if (!newSource)
                 newSource = "sample.html";
-            
-            newiFrame = createElement("iframe").addClass("pageContent row-fluid inactiveFrame");
-            newiFrame.attr("frameborder", "0").attr("src", newSource).attr("tabIndex", newTabIndex);
-            iFrameContainer.append(newiFrame);
+
+            append_iFrame(newSource, newTabIndex, true);
+            newiFrame = iFrameContainer.find("iframe[tabIndex='" + newTabIndex + "']");
         }
 
+
+        // update sidebar
         _currentTab = newTabIndex;
         $("#sidebar-wrapper li").removeClass("active");
         listItem.addClass("active");
-        newiFrame.removeClass("inactiveFrame");
-        currentiFrame.addClass("inactiveFrame");
+        
+
+        
+        // swap to newly selected frame
+        var swapFrames = function() {
+            newiFrame.removeClass("inactiveFrame");
+            currentiFrame.addClass("inactiveFrame");
+        }
+        // delay to give a new iframe time to load
+        if (loadingNewiFrame)
+            setTimeout(swapFrames, 850);
+        else
+            swapFrames();
     });
 });
