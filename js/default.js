@@ -18,7 +18,7 @@ $(function() {
         },
         {
             tabName: "Lectures",
-            iframeSource: ""
+            iframeSource: "https://ctools.umich.edu/access/basiclti/site/f89c53b6-0efc-4252-a82b-56ba1f1e878a/content:2838"
         },
         {
             tabName: "Resources",
