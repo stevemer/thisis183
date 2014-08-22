@@ -17,3 +17,16 @@
 .sidebar-nav.custom {
 	width: 125px;
 }
+
+.container-fluid.custom > .row-fluid {
+	margin-top: 10px;
+}
+
+#wrapper .container-fluid .row-fluid {
+	margin-top: 20px;
+}
+
+#calendarRow iframe {
+	width: 100%;
+	height: 550px;
+}
