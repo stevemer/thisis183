@@ -18,6 +18,22 @@
 	width: 125px;
 }
 
+.sidebar-nav.custom li {
+	color: #999999;
+}
+
+.sidebar-nav.custom li.active {
+	background: rgba(255,255,255,0.3);
+}
+
+.sidebar-nav.custom li:hover {
+	color: white;
+}
+
+.container-fluid.custom {
+	position: relative;
+}
+
 .container-fluid.custom > .row-fluid {
 	/*margin-top: 10px;*/
 }
@@ -37,6 +53,15 @@
 	height: 100%;
 }
 
-.inactiveFrame {
-	display: none;
+.pageContent {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	transition: all 0.5s ease 0s;
+	padding: 10px 20px;
 }
+
+.inactiveFrame {
+	height: 0px;
+}
+

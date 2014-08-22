@@ -22,46 +22,7 @@
     <!-- JAVASCRIPT LIBRARIES -->
     <script src="js/jquery-1.11.0.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script>
-        $(function() {
-            var _pagesToLoad = [
-                "sample.html", 
-                "http://umich.edu/~eecs183/calendar", 
-                "http://umich.edu/~eecs183/syllabus",
-            ];
-
-            function createElement(elementType) {
-                return $(document.createElement(elementType));
-            }
-
-            function create_iFrames() {
-                var pageContentContainer = $("#iFrameContainer");
-                for (var i = 0; i < _pagesToLoad.length; i++) {
-                    var iFrame = createElement("iframe").addClass("pageContent row-fluid");
-                    if (i != 0)
-                        iFrame.addClass("inactiveFrame");
-
-                    iFrame.attr("frameborder", "0").attr("src", _pagesToLoad[i]);
-                    pageContentContainer.append(iFrame);
-                }
-            }
-
-            create_iFrames();
-
-            $("#sidebar-wrapper li").click(function() {
-                var listItem = $(this),
-                    iFrameContainer = $("#iFrameContainer");
-                iFrameContainer.find("iframe").addClass("inactiveFrame");
-                if (listItem.find("a").text() == "Calendar") {
-                    iFrameContainer.find("iframe[src='" + _pagesToLoad[1] + "']").removeClass("inactiveFrame")
-                } else if (listItem.find("a").text() == "Syllabus") {
-                    iFrameContainer.find("iframe[src='" + _pagesToLoad[2] + "']").removeClass("inactiveFrame")
-                } else {
-                    iFrameContainer.find("iframe[src='" + _pagesToLoad[0] + "']").removeClass("inactiveFrame")
-                }
-            })
-        });
-    </script>
+    <script type="text/javascript" src="js/default.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -74,42 +35,18 @@
 
 <body style="overflow:hidden">
     <div id="wrapper" class="custom">
+        
         <!-- Sidebar -->
         <div id="sidebar-wrapper" class="custom">
             <ul class="sidebar-nav custom">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        EECS 183
-                    </a>
-                </li>
-                <li>
-                    <a href="#sample.htm">Syllabus</a>
-                </li>
-                <li>
-                    <a href="#">Calendar</a>
-                </li>
-                <li>
-                    <a href="#">Projects</a>
-                </li>
-                <li>
-                    <a href="#">Lectures</a>
-                </li>
-                <li>
-                    <a href="#">Resources</a>
-                </li>
-                <li>
-                    <a href="#staffRow">Staff</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
 
+        
         <!-- Page Content -->
         <div id="iFrameContainer" class="container-fluid custom" style="padding-right:0px">      
-        </div><!--/container-fluid-->
+        </div>
 
     </div>
     <!-- /#wrapper -->
