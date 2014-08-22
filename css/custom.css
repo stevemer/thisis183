@@ -26,6 +26,7 @@
 	background: rgba(255,255,255,0.3);
 }
 
+#sidebar-wrapper li.active,
 .sidebar-nav.custom li:hover {
 	color: white;
 }
