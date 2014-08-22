@@ -32,7 +32,8 @@ $(function() {
             tabName: "Contact",
             iframeSource: ""
         },
-    ];
+    ],
+        _currentTab = 0;
 
     $("body").height(window.innerHeight);
     function handleResize() {
@@ -52,7 +53,7 @@ $(function() {
             var currentTab = _sidebarTabs[i];
             if (currentTab.tabName)
                 appendSidebarItem(currentTab.tabName, i);
-            if (currentTab.iframeSource)
+            if (i == 0)
                 append_iFrame(currentTab.iframeSource, i);
         }
     }
@@ -68,8 +69,8 @@ $(function() {
         var iFrame = createElement("iframe").attr("frameborder", "0").addClass("pageContent row-fluid");
         iFrame.attr("tabIndex", index).attr("src", iframeSource);
 
-        if (index != "0")
-            iFrame.addClass("inactiveFrame");
+        // if (index != "0")
+        //     iFrame.addClass("inactiveFrame");
 
         $("#iFrameContainer").append(iFrame);
     }
@@ -80,15 +81,24 @@ $(function() {
     $("#sidebar-wrapper li").click(function() {
         var listItem = $(this),
             iFrameContainer = $("#iFrameContainer"),
-            iframeIndex = listItem.attr("tabIndex");
-        iFrameContainer.find("iframe").addClass("inactiveFrame").innerHeight("");
-        $("#sidebar-wrapper li").removeClass("active");
+            currentiFrame = iFrameContainer.find("iframe[tabIndex='" + _currentTab + "']"),
+            newTabIndex = $(this).attr("tabIndex"),
+            newiFrame = iFrameContainer.find("iframe[tabIndex='" + newTabIndex + "']");
         
-        var selectedIframe = iFrameContainer.find("iframe[tabIndex='" + iframeIndex + "']");
-        if (!selectedIframe.length) {
-            selectedIframe = iFrameContainer.find("iframe[tabIndex='0']");
+        if (!newiFrame.length) {
+            var newSource = _sidebarTabs[newTabIndex].iframeSource;
+            if (!newSource)
+                newSource = "sample.html";
+            
+            newiFrame = createElement("iframe").addClass("pageContent row-fluid inactiveFrame");
+            newiFrame.attr("frameborder", "0").attr("src", newSource).attr("tabIndex", newTabIndex);
+            iFrameContainer.append(newiFrame);
         }
-        selectedIframe.removeClass("inactiveFrame").innerHeight($("body").innerHeight());
-        listItem.addClass("active")
+
+        _currentTab = newTabIndex;
+        $("#sidebar-wrapper li").removeClass("active");
+        listItem.addClass("active");
+        newiFrame.removeClass("inactiveFrame");
+        currentiFrame.addClass("inactiveFrame");
     });
 });
