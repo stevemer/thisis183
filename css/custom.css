@@ -1,0 +1,19 @@
+.hero-unit.custom {
+	background-image: url(../header.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#wrapper.custom {
+	padding-left: 125px;
+}
+
+#sidebar-wrapper.custom {
+	width: 125px;
+	left: 0px;
+	margin-left: 0px;
+}
+
+.sidebar-nav.custom {
+	width: 125px;
+}
