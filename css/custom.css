@@ -9,9 +9,10 @@ body
 }
 
 .hero-unit.custom {
-	background-image: url(../header.png);
-	background-size: 100% 100%;
+	background-image: url('../header.png');
+	background-size: 100%;
 	background-repeat: no-repeat;
+	height: 200px;
 }
 
 #wrapper.custom {
@@ -67,4 +68,9 @@ body
 #wrapper .container-fluid,
 .pageContent {
 	height: 100%;
+}
+
+.iframe-wrapper
+{
+	padding: 16px 16px 0 16px;
 }
