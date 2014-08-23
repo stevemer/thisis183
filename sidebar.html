@@ -13,26 +13,30 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.2.0-dist/css/bootstrap.css">
 
     <!-- Custom CSS -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+
+    <!-- JAVASCRIPT LIBRARIES -->
+    <script src="js/jquery-1.11.0.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <![endif]-->
 
 </head>
 
 <body>
-
-    <div id="wrapper">
-
+    <div id="wrapper" class="custom">
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
+        <div id="sidebar-wrapper" class="custom">
+            <ul class="sidebar-nav custom">
                 <li class="sidebar-brand">
                     <a href="#">
                         EECS 183
@@ -54,7 +58,7 @@
                     <a href="#">Resources</a>
                 </li>
                 <li>
-                    <a href="#">Staff</a>
+                    <a href="#staffRow">Staff</a>
                 </li>
                 <li>
                     <a href="#">Contact</a>
@@ -64,80 +68,60 @@
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
+        <div class="container-fluid custom">
+            <div class="row-fluid">
+                <div class="hero-unit custom">
+                    <!-- <img src="header.png", style="float: right;"> -->
+                    <h1 style="color:red;">This is EECS 183</h1>
+                    <!-- <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>  -->
+                </div>
                 <div class="row-fluid">
-                    <div class="hero-unit" style="background-image: url(header.png);">
-                        <!-- <img src="header.png", style="float: right;"> -->
-                        <h1 style="color:yellow;">This is EECS 183.</h1>
-                       <!-- <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>  -->
-                      </div>
-                      <div class="row-fluid">
-                        <div class="span2">
-                          <img class="marketing-img" src="piazza.png" style="height: 50px;">
-                        </div><!--/span-->
-                        <div class="span2">
-                          <img class="marketing-img" src="zyante.jpg" style="height: 50px;">
-                        </div><!--/span-->
-                        <div class="span2">
-                          <img class="marketing-img" src="turingscraft.gif" style="height: 50px;">
-                        </div><!--/span-->
-                        <div class="span2">
-                          <img class="marketing-img" src="style.png", style="height: 50px;">
-                        </div><!--/span-->
-                        <div class="span2">
-                          <img class="marketing-img" src="autograder.png" style="height: 50px;">
-                        </div><!--/span-->
-                        <div class="span2">
-                          <img class="marketing-img" src="officehours.png" style="height: 50px;">
-                        </div><!--/span-->
-                      </div><!--/row-->
-                      <div class="row-fluid">
-                        <div class="span4">
+                    <a class="span2" href="http://piazza.com" target="_blank">
+                      <img class="marketing-img" src="piazza.png" style="height: 50px;">
+                  </a><!--/span-->
+                  <a class="span2" href="http://zybooks.zyante.com" target="_blank">
+                      <img class="marketing-img" src="zyante.jpg" style="height: 50px;">
+                  </a><!--/span-->
+                  <a class="span2" href="https://codelab3.turingscraft.com/codelab/jsp/login1.jsp" target="_blank">
+                      <img class="marketing-img" src="turingscraft.gif" style="height: 50px;">
+                  </a><!--/span-->
+                  <a class="span2" href="http://eecsstyle.herokuapp.com/" target="_blank">
+                      <img class="marketing-img" src="style.png", style="height: 50px;">
+                  </a><!--/span-->
+                  <a class="span2" href="https://vienna.eecs.umich.edu/ag/" target="_blank">
+                      <img class="marketing-img" src="autograder.png" style="height: 50px;">
+                  </a><!--/span-->
+                  <a class="span2" href="http://oh-manager.herokuapp.com" target="_blank">
+                      <img class="marketing-img" src="officehours.png" style="height: 50px;">
+                  </a><!--/span-->
+                </div><!--/row-->
+                  
+                
+                <div id="syllabusRow" class="row-fluid">
+                    <div class="col-md-4">
                         <h2> Welcome to 183! </h2>
                         <p> In this course, you'll learn the fundamental aspects of computer science through basic programming in Python and C++. 183 is designed not only for concentrators in computer science but also for non-concentrators. More than just teach you how to program, this course teaches you how to think more methodically and how to solve problems more effectively. As such, its lessons are applicable well beyond the boundaries of computer science itself. That the course does teach you how to program, though, is perhaps its most empowering return. With this skill comes the ability to solve real-world problems in ways and at speeds beyond the abilities of most humans.  </p>
-                        </div> 
-                      <div class="span8" style="margin: 15px;">
-                       <iframe width="100%" height="500" frameborder="0" style="display:block;" src="https://docs.google.com/spreadsheet/pub?key=0AtcSCvQQ3XI6dHRCRjVydmRhRkk2NmtnbFVpaFh0M3c&single=true&gid=0&output=html&widget=true"></iframe> 
-                        </div>
-                      </div>
-                      <div class="row-fluid">
-                        <div class="span6">
-                        <h2> Why we love EECS 183 </h2>
-                        <p> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." </p>
-                        <p> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." </p>
-                        <p> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." </p>
-                        <p> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." </p>
-                        </div><!--/span-->
-                        <div class="span6">
-                        <h2> EECS 183 in the workplace </h2>
-                        <p> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." </p>
-                        <p> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." </p>
-                        <p> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." </p>
-                        <p> "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." </p>
-                        </div><!--/span-->
-                      </div><!--/row-->
+                    </div> 
+                    <div class="col-md-8" style="margin-top: 15px;">
+                        <iframe width="100%" height="500" frameborder="0" style="display:block;" src="https://docs.google.com/spreadsheet/pub?key=0AtcSCvQQ3XI6dHRCRjVydmRhRkk2NmtnbFVpaFh0M3c&single=true&gid=0&output=html&widget=true"></iframe> 
+                    </div>
                 </div>
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
+                
+                
+                <div id="calendarRow" class="row-fluid">
+                    <h3>Course Calendar</h3>
+                    <iframe src="http://umich.edu/~eecs183/calendar" frameborder="0"></iframe>
+                </div>
+
+
+                <div id="staffRow" class="row-fluid">
+                    <h3>Course Staff</h3>
+                </div>
+            </div><!--/row-->
+        </div><!--/container-fluid-->
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- jQuery Version 1.11.0 -->
-    <script src="js/jquery-1.11.0.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
 
 </body>
 

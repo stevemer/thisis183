@@ -1,0 +1,66 @@
+.hero-unit.custom {
+	background-image: url(../header.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#wrapper.custom {
+	padding-left: 125px;
+}
+
+#sidebar-wrapper.custom {
+	width: 125px;
+	left: 0px;
+	margin-left: 0px;
+}
+
+.sidebar-nav.custom {
+	width: 125px;
+}
+
+.sidebar-nav.custom li {
+	color: #999999;
+}
+
+.sidebar-nav.custom li.active {
+	background: rgba(255,255,255,0.3);
+}
+
+#sidebar-wrapper li.active,
+.sidebar-nav.custom li:hover {
+	color: white;
+}
+
+.container-fluid.custom {
+	position: relative;
+}
+
+#calendarRow iframe {
+	width: 100%;
+	height: 550px;
+}
+
+.hero-unit.custom h1 {
+	color: #f1c40f;
+	background: radial-gradient(at center, rgba(0,0,0,1) 10%, rgba(255,255,255,0)90%);
+	text-align: center;
+}
+
+#wrapper,
+#wrapper .container-fluid,
+.pageContent {
+	height: 100%;
+}
+
+.pageContent {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	transition: all 0.5s ease 0s;
+	padding: 10px 0px 10px 20px;
+}
+
+.inactiveFrame {
+	height: 0px;
+}
+
