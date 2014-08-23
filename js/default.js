@@ -35,6 +35,24 @@ $(function() {
     ],
         _currentTab = 0;
 
+    function parseURL() {
+        var url = window.location;
+        url = url.href.split("#");
+        if (url.length != 1 || (url.length > 1 && url[1] != "EECS183")) {
+            _currentTab = findURLInTabs(url[1]);
+            if (_currentTab == -1)
+                _currentTab = 0;
+        }
+    }
+    function findURLInTabs(tabName) {
+        for (var i in _sidebarTabs) {
+            if (_sidebarTabs[i].tabName == tabName)
+                return i;
+        }
+        return -1;
+    }
+    parseURL();
+
     $("body").height(window.innerHeight);
     function handleResize() {
         $("body").height(window.innerHeight);
@@ -53,15 +71,21 @@ $(function() {
             var currentTab = _sidebarTabs[i];
             if (currentTab.tabName)
                 appendSidebarItem(currentTab.tabName, i);
-            if (i == 0)
-                append_iFrame(currentTab.iframeSource, i);
+            if (i == _currentTab) {
+                var iframeSource = currentTab.iframeSource;
+                if (!iframeSource)
+                    iframeSource = "sample.html";
+                append_iFrame(iframeSource, i);
+            }
         }
     }
     function appendSidebarItem(sidebarName, index) {
         var listItem = createElement("li").attr("tabIndex", index);
         listItem.append(createElement("span").text(sidebarName));
         if (index == "0")
-            listItem.addClass("sidebar-brand active");
+            listItem.addClass("sidebar-brand");
+        if (index == _currentTab)
+            listItem.addClass("active");
 
         $("#sidebar-wrapper ul").append(listItem);
     }
@@ -103,7 +127,7 @@ $(function() {
         _currentTab = newTabIndex;
         $("#sidebar-wrapper li").removeClass("active");
         listItem.addClass("active");
-        
+        location.hash = _sidebarTabs[newTabIndex].tabName.replace(/[ \t\n]/, '');
 
         
         // swap to newly selected frame
