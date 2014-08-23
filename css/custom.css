@@ -51,6 +51,11 @@ body
 	position: relative;
 }
 
+#content > iframe
+{
+	display:block;
+}
+
 #calendarRow iframe {
 	width: 100%;
 	height: 550px;
