@@ -1,5 +1,11 @@
-html {
+html
+{
 	min-width: 600px;
+}
+
+body
+{
+	overflow-x: hidden;
 }
 
 .hero-unit.custom {
@@ -33,6 +39,12 @@ html {
 #sidebar-wrapper li.active > a,
 .sidebar-nav.custom li:hover {
 	color: white;
+}
+
+#content
+{
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .container-fluid.custom {
