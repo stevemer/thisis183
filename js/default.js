@@ -22,7 +22,7 @@ $(function() {
         },
         {
             tabName: "Resources",
-            iframeSource: ""
+            iframeSource: "https://ctools.umich.edu/portal/tool/f0eb6311-e389-42f4-90a7-9c8a6565717a?panel=Main"
         },
         {
             tabName: "Staff",
