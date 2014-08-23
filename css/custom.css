@@ -53,12 +53,8 @@ body
 
 #content > iframe
 {
+	/* solves the scrolling issue and removes the horizontal white bar at the bottom of the iframe */
 	display:block;
-}
-
-#calendarRow iframe {
-	width: 100%;
-	height: 550px;
 }
 
 .hero-unit.custom h1 {
@@ -72,16 +68,3 @@ body
 .pageContent {
 	height: 100%;
 }
-
-.pageContent {
-	position: absolute;
-	bottom: 0px;
-	right: 0px;
-	transition: all 0.5s ease 0s;
-	padding: 10px 0px 10px 20px;
-}
-
-.inactiveFrame {
-	height: 0px;
-}
-
