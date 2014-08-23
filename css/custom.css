@@ -9,7 +9,7 @@ body
 }
 
 .hero-unit.custom {
-	background-image: url('../header.png');
+	background-image: url('/img/header.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
 	height: 200px;
@@ -46,6 +46,11 @@ body
 {
 	padding-left: 0;
 	padding-right: 0;
+}
+
+.content-wrapper
+{
+	padding: 16px;
 }
 
 .container-fluid.custom {
