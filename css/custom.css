@@ -1,11 +1,18 @@
-html {
+html
+{
 	min-width: 600px;
 }
 
+body
+{
+	overflow-x: hidden;
+}
+
 .hero-unit.custom {
-	background-image: url(../header.png);
-	background-size: 100% 100%;
+	background-image: url('/img/header.png');
+	background-size: 100%;
 	background-repeat: no-repeat;
+	height: 200px;
 }
 
 #wrapper.custom {
@@ -35,13 +42,25 @@ html {
 	color: white;
 }
 
+#content
+{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.content-wrapper
+{
+	padding: 16px;
+}
+
 .container-fluid.custom {
 	position: relative;
 }
 
-#calendarRow iframe {
-	width: 100%;
-	height: 550px;
+#content > iframe
+{
+	/* solves the scrolling issue and removes the horizontal white bar at the bottom of the iframe */
+	display:block;
 }
 
 .hero-unit.custom h1 {
@@ -56,15 +75,7 @@ html {
 	height: 100%;
 }
 
-.pageContent {
-	position: absolute;
-	bottom: 0px;
-	right: 0px;
-	transition: all 0.5s ease 0s;
-	padding: 10px 0px 10px 20px;
+.iframe-wrapper
+{
+	padding: 16px 16px 0 16px;
 }
-
-.inactiveFrame {
-	height: 0px;
-}
-
