@@ -8,6 +8,14 @@ body
 	overflow-x: hidden;
 }
 
+.noscript
+{
+	padding: 16px 0;
+	font-size: 24px;
+	background-color: #F2DEDE;
+	text-align: center;
+}
+
 .hero-unit.custom {
 	background-image: url('/img/header.png');
 	background-size: 100%;
