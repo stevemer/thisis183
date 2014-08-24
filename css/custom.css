@@ -97,3 +97,59 @@ body
 {
 	padding: 16px 16px 0 16px;
 }
+
+.tile-row
+{
+	padding-left: 6px;
+	padding-right: 6px;
+}
+
+.tile-wrapper
+{
+	padding: 8px;
+}
+
+.tile
+{
+	height: 96px;
+	text-align: center;
+	background: #83c4e7;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-o-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.tile h2
+{
+	padding-top: 32px;
+	color: white;
+	font-size: 22px;
+	font-weight: 400;
+}
+
+.tile-wrapper a:hover
+{
+	text-decoration: none;
+}
+
+#zyante-tile
+{
+	background: #ec8c43;
+}
+
+#codelab-tile
+{
+	background: #73ac59;
+}
+
+#style-tile
+{
+	background: #4f70a2;
+}
+
+#join-tile
+{
+	background: #de73a8;
+}
