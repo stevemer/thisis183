@@ -33,7 +33,7 @@ function loadPage()
 	
 	$("#sidebar-wrapper li").removeClass("active");
 	$("#" + page + "-button").addClass("active");
-	$('#content').load('/pages/' + page + '.html');
+	$('#content').load('../pages/' + page + '.html');
 	
 	
 }
