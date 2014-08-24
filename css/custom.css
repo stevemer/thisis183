@@ -39,6 +39,7 @@ body
 
 .sidebar-nav.custom li {
 	color: #999999;
+	list-style-type: none;
 }
 
 .sidebar-nav.custom li.active {
@@ -47,6 +48,16 @@ body
 
 #sidebar-wrapper li.active > a,
 .sidebar-nav.custom li:hover {	color: white;
+}
+
+.sidebar-nav.custom > li > ul
+{
+	padding: 0;
+}
+
+.sidebar-nav.custom > li > ul > li > a
+{
+	padding-left: 42px;
 }
 
 #content
