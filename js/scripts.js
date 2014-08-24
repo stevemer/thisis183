@@ -18,7 +18,13 @@ function loadPage()
 	var page = window.location.hash.substring(1);
 	
 	// TODO: dynamically figure out which pages are available 
-	var validPages = ['home', 'calendar', 'syllabus', 'resources', 'lectures', 'gradebook'];
+	var validPages = ['home', 'calendar', 'syllabus', 'resources', 'lectures', 'gradebook', 'autograder', 'staff'];
+	
+	if (page == 'projects')
+	{
+		
+		$('#pl').click();
+	}
 	
 	if ($.inArray(page, validPages) === -1)
 	{
@@ -27,5 +33,7 @@ function loadPage()
 	
 	$("#sidebar-wrapper li").removeClass("active");
 	$("#" + page + "-button").addClass("active");
-	$('#content').load('/pages/' + page + '.html');
+	$('#content').load('../pages/' + page + '.html');
+	
+	
 }
