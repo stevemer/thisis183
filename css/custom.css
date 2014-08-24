@@ -24,17 +24,17 @@ body
 }
 
 #wrapper.custom {
-	padding-left: 125px;
+	padding-left: 150px;
 }
 
 #sidebar-wrapper.custom {
-	width: 125px;
+	width: 150px;
 	left: 0px;
 	margin-left: 0px;
 }
 
 .sidebar-nav.custom {
-	width: 125px;
+	width: 150px;
 }
 
 .sidebar-nav.custom li {
@@ -46,8 +46,7 @@ body
 }
 
 #sidebar-wrapper li.active > a,
-.sidebar-nav.custom li:hover {
-	color: white;
+.sidebar-nav.custom li:hover {	color: white;
 }
 
 #content
