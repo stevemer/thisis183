@@ -227,10 +227,6 @@ body
 	padding-top: 8px;
 }
 
-.fa.arrow:before {
-    content: "\f104";
-}
-
 .sidebar-nav .fa-caret-down
 {
 	float: right;
