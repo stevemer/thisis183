@@ -22,6 +22,12 @@ function loadPage()
 		page = 'home';
 	}
 	
+	document.title = 'EECS 183'
+	if (page != 'home')
+	{
+		document.title += ': ' + page.charAt(0).toUpperCase() + page.substring(1);
+	}
+	
 	$("#sidebar-wrapper li").removeClass("active");
 	$("#" + page + "-button").addClass("active");
 	$('#content').load('../pages/' + page + '.html');
