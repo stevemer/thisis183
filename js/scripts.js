@@ -2,15 +2,7 @@ $(document).ready(function()
 {
 	loadPage();
 
-	$("#sidebar-wrapper li").click(function() {
-    	target = $('> a', this).attr("href");
-    	if (target[0] == '#')
-    	{
-	    	document.location.hash = target;
-	    	loadPage();
-    	}
-        
-    });
+    window.onhashchange = loadPage;
 });
 
 function loadPage()
@@ -36,4 +28,9 @@ function loadPage()
 	$('#content').load('../pages/' + page + '.html');
 	
 	
+}
+
+function removeProgressWheel()
+{
+	$('.progress-wheel').remove();
 }

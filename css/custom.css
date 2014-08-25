@@ -154,3 +154,12 @@ body
 {
 	background: #d489b8;
 }
+
+.progress-wheel
+{
+	padding-top: 64px;
+	position: absolute;
+	z-index: -2;
+	width: 100%;
+	text-align: center;
+}
