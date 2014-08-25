@@ -37,3 +37,8 @@ function loadPage()
 	
 	
 }
+
+function removeProgressWheel()
+{
+	$('.progress-wheel').remove();
+}
