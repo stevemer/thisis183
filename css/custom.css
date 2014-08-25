@@ -226,3 +226,17 @@ body
 {
 	padding-top: 8px;
 }
+
+.sidebar-nav .fa-caret-down
+{
+	float: right;
+	line-height: 40px;
+	margin-right: 10px;
+}
+
+.sidebar-nav .collapsed > .fa-caret-down
+{
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+}
