@@ -10,12 +10,11 @@ function loadPage()
 	var page = window.location.hash.substring(1);
 	
 	// TODO: dynamically figure out which pages are available 
-	var validPages = ['home', 'calendar', 'syllabus', 'resources', 'lectures', 'gradebook', 'autograder', 'staff'];
+	var validPages = ['home', 'calendar', 'syllabus', 'resources', 'lectures', 'gradebook', 'autograder', 'staff', 'style'];
 	
 	if (page == 'projects')
 	{
-		
-		$('#pl').click();
+		$('#projects-link').click();
 	}
 	
 	if ($.inArray(page, validPages) === -1)
