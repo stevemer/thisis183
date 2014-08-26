@@ -1,22 +1,155 @@
-var _discussionSections = [
-	{
-		sectionNumber: 1,
-		days: ["Tuesday",],
-		startTime: "00:09:00",
-		endTime: "10:00:00",
-		room: "1046 Dana",
-	},
-];
-
 var _lectureSections = [
-	{
-		sectionNumber: 1,
-		days: ["Monday",],
-		startTime: "13:00:00",
-		endTime: "14:30:00",
-		room: "116 Lorch"
-	},
-];
+	    {
+	        sectionNumber: "001",
+	        days: ["Monday", "Wednesday"],
+	        startTime: "08:30:00",
+	        endTime: "10:00:00",
+	        room: "1360 EH",
+	    },
+        {
+            sectionNumber: "002",
+            days: ["Monday", "Wednesday"],
+            startTime: "10:30:00",
+            endTime: "12:00:00",
+            room: "STAMPS",
+        },
+        {
+            sectionNumber: "003",
+            days: ["Monday", "Wednesday"],
+            startTime: "14:30:00",
+            endTime: "16:00:00",
+            room: "UMMA AUD",
+        },
+        {
+            sectionNumber: "004",
+            days: ["Monday", "Wednesday"],
+            startTime: "16:00:00",
+            endTime: "17:30:00",
+            room: "170 DENN",
+        },
+    ],
+    _discussionSections = [     
+	    {
+	        sectionNumber: "011",
+	        days: ["Tuesday", ],
+	        startTime: "09:00:00",
+	        endTime: "10:00:00",
+	        room: "1046 DANA"
+	    },
+        {
+            sectionNumber: "012",
+            days: ["Tuesday", ],
+            startTime: "12:00:00",
+            endTime: "13:00:00",
+            room: "506 BMT"
+        },
+        {
+            sectionNumber: "013",
+            days: ["Friday", ],
+            startTime: "14:00:00",
+            endTime: "15:00:00",
+            room: "B844 EH"
+        },
+        {
+            sectionNumber: "014",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
+        {
+            sectionNumber: "015",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
+        {
+            sectionNumber: "016",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
+        {
+            sectionNumber: "017",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
+        {
+            sectionNumber: "018",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
+        {
+            sectionNumber: "019",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
+        {
+            sectionNumber: "020",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
+        {
+            sectionNumber: "021",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
+        {
+            sectionNumber: "022",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
+        {
+            sectionNumber: "023",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
+        {
+            sectionNumber: "024",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
+        {
+            sectionNumber: "025",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
+        {
+            sectionNumber: "026",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
+        {
+            sectionNumber: "027",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
+    ],
+    _relativeImagePath = "../img/staff/";
 
 // Instrcutor ctor
 function Instructor(inFirstName, inLastName, inImageName, inMajors, inMinors,
@@ -49,8 +182,12 @@ Instructor.prototype.getInstructorName = function ()
 
     return nameString;
 };
-Instructor.prototype.getImagePath = function() {
-    return _relativeImagePath + this.imageName;
+Instructor.prototype.getImagePath = function ()
+{
+    var image = this.imageName;
+    if (!image)
+        image = "default-photo.png"
+    return _relativeImagePath + image;
 };
 Instructor.prototype.getLectureSections = function ()
 {
@@ -79,33 +216,34 @@ Instructor.prototype.getDiscussionSections = function ()
     return discussions.slice(0);
 };
 
+
 var _instructors = {
 
     professors: [,
-        Instructor("Mary-Lou", "Dorf", "", [], [], "", "", "", "", [], []),
-        Instructor("Jermey", "Gibson", "", [], [], "", "", "", "", [], []),
-        Instructor("Bill", "Arthur", "", [], [], "", "", "", "", [], []),
+        new Instructor("Mary-Lou", "Dorf", "", [], [], "", "", "", "", [], []),
+        new Instructor("Jermey", "Gibson", "", [], [], "", "", "", "", [], []),
+        new Instructor("Bill", "Arthur", "", [], [], "", "", "", "", [], []),
     ],
 
 
     GSIs: [
-        Instructor("Adam", "Schnitzer", "", [], [], "", "", "", "", [], []),
-        Instructor("Anna", "Wasewicz", "", [], [], "", "", "", "", [], []),
-        Instructor("Billy", "Wolfington", "", [], [], "", "", "", "", [], []),
-        Instructor("Carolyn", "Vlach", "", [], [], "", "", "", "", [], []),
-        Instructor("David", "Bonnen", "", [], [], "", "", "", "", [], []),
-        Instructor("Diana", "Slaba", "", [], [], "", "", "", "", [], []),
-        Instructor("Grace", "Kendall", "", [], [], "", "", "", "", [], []),
-        Instructor("Jessica", "Wu", "", [], [], "", "", "", "", [], []),
-        Instructor("Lisa", "Dion", "", [], [], "", "", "", "", [], []),
-        Instructor("Madeline", "Enders", "", [], [], "", "", "", "", [], []),
-        Instructor("Maxim", "Aleksa", "", [], [], "", "", "", "", [], []),
-        Instructor("Michael", "Vianueva", "", [], [], "", "", "", "", [], []),
-        Instructor("Reed", "Coke", "", [], [], "", "", "", "", [], []),
-        Instructor("Ryan", "Cesiel", "", [], [], "", "", "", "", [], []),
-        Instructor("Shibamouli", "Lahiri", "", [], [], "", "", "", "", [], []),
-        Instructor("Steve", "Merritt", "", [], [], "", "", "", "", [], []),
-        Instructor("Tim", "Wurman", "", [], [], "", "", "", "", [], []),
-        Instructor("Timothy", "Lewis", "", [], [], "", "", "", "", [], []),
-    ]
+        new Instructor("Adam", "Schnitzer", "", [], [], "", "", "", "", [], []),
+        new Instructor("Anna", "Wasewicz", "", [], [], "", "", "", "", [], []),
+        new Instructor("Billy", "Wolfington", "", [], [], "", "", "", "", [], []),
+        new Instructor("Carolyn", "Vlach", "", [], [], "", "", "", "", [], []),
+        new Instructor("David", "Bonnen", "", [], [], "", "", "", "", [], []),
+        new Instructor("Diana", "Slaba", "", [], [], "", "", "", "", [], []),
+        new Instructor("Grace", "Kendall", "", [], [], "", "", "", "", [], []),
+        new Instructor("Jessica", "Wu", "", [], [], "", "", "", "", [], []),
+        new Instructor("Lisa", "Dion", "", [], [], "", "", "", "", [], []),
+        new Instructor("Madeline", "Enders", "", [], [], "", "", "", "", [], []),
+        new Instructor("Maxim", "Aleksa", "", [], [], "", "", "", "", [], []),
+        new Instructor("Michael", "Vianueva", "", [], [], "", "", "", "", [], []),
+        new Instructor("Reed", "Coke", "", [], [], "", "", "", "", [], []),
+        new Instructor("Ryan", "Cesiel", "", [], [], "", "", "", "", [], []),
+        new Instructor("Shibamouli", "Lahiri", "", [], [], "", "", "", "", [], []),
+        new Instructor("Steve", "Merritt", "", [], [], "", "", "", "", [], []),
+        new Instructor("Tim", "Wurman", "", [], [], "", "", "", "", [], []),
+        new Instructor("Timothy", "Lewis", "", [], [], "", "", "", "", [], []),
+    ],
 };
