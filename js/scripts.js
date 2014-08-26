@@ -14,6 +14,15 @@ $(document).ready(function()
 	window.onhashchange = loadPage;
 });
 
+$(window).resize(function ()
+{
+    if (LAST_LIVE_POPOVER)
+    {
+        // repositions visible popover during resize
+        LAST_LIVE_POPOVER.popover("show");
+    }
+})
+
 var LAST_LIVE_POPOVER = undefined;
 function loadPage()
 {
@@ -45,10 +54,6 @@ function loadPage()
 	    if (page == "staff" && status == "success") {
 	        populateStaffPage();
             
-            var popoverOptions = {
-                container: "#wrapper #content",
-                placement: "bottom"
-            };
             $(".staff-member img").click(function() {
                 var currentPopover = $(this);
                 if (LAST_LIVE_POPOVER)
@@ -65,6 +70,10 @@ function loadPage()
                     }
                 }
 
+                var popoverOptions = {
+                    container: "#wrapper #content",
+                    placement: "bottom"
+                };
                 popoverOptions.content = $(this).parents(".staff-member").find(".staff-info").html();
                 popoverOptions.html = true;
                 currentPopover.popover(popoverOptions).popover("show");
@@ -155,12 +164,25 @@ function createStaffInfo(instructorDef)
         return;
 
     var infoContainer = createElement("div").addClass("hidden staff-info"),
+        lectureContainer = createElement("div").addClass("staff-lecture-wrapper"),
+        discussionContainer = createElement("div").addClass("staff-dicussion-wrapper"),
         websiteContainer = createElement("div").addClass("staff-website-wrapper"),
         emailContainer = createElement("div").addClass("staff-email-wrapper"),
         majorsContainer = createElement("div").addClass("staff-majors-wrapper"),
+        minorsContainer = createElement("div").addClass("staff-minors-wrapper"),
         label,
         content;
 
+    if (instructorDef.lectures.length)
+    {
+        appendClasses("Lecture Section", instructorDef.getLectureSections(), lectureContainer);
+        infoContainer.append(lectureContainer);
+    }
+    if (instructorDef.discussions.length)
+    {
+        appendClasses("Discussion Section", instructorDef.getDiscussionSections(), discussionContainer);
+        infoContainer.append(discussionContainer);
+    }
     if (instructorDef.website)
     {
         label = createElement("span").text("Website: ");
@@ -179,17 +201,70 @@ function createStaffInfo(instructorDef)
     }
     if (instructorDef.concentration.majors.length)
     {
-        var labelText = "Major" + (instructorDef.concentration.majors.length > 1 ? "s" : "");
-        content = createElement("ul");
-        label = createElement("span").text(labelText);
-        for (var i in instructorDef.concentration.majors)
-            content.append(createElement("li").text(instructorDef.concentration.majors[i]));
-        majorsContainer.append(label).append(content);
-
+        appendConcentration("Major", instructorDef.concentration.majors, majorsContainer);
         infoContainer.append(majorsContainer);
+    }
+    if (instructorDef.concentration.minors.length)
+    {
+        appendConcentration("Minor", instructorDef.concentration.minors, minorsContainer);
+        infoContainer.append(minorsContainer);
     }
 
     return infoContainer;
+}
+function formatTimeStamp(timestamp)
+{
+    timestamp = timestamp.split(":");
+    timestamp[0] = parseInt(timestamp[0]);
+    var daytimeLabel = "am";
+    if (timestamp[0] >= 12)
+        daytimeLabel = "pm";
+    if (timestamp[0] > 12)
+        timestamp[0] -= 12;
+
+    return timestamp[0] + ":" + timestamp[1] + daytimeLabel;
+}
+function formatClassTime(section)
+{
+    var formattedTime = section.days[0] + "s";
+    for (var i = 1; i < section.days.length; i++)
+    {
+        formattedTime += ", " + section.days[i] + "s";
+    }
+
+    var startTime = formatTimeStamp(section.startTime),
+        endTime = formatTimeStamp(section.endTime);
+
+    formattedTime += " " + startTime + "-" + endTime;
+
+    return formattedTime;
+}
+function appendClasses(classType, classArray, container)
+{
+    var labelText = classType + (classArray.length > 1 ? "s" : ""),
+        label = createElement("span").text(labelText),
+        content = createElement("ul");
+    for (var i in classArray)
+    {
+        content.append(createElement("li").text(formatClassTime(classArray[i])));
+    }
+
+    container.append(label).append(content);
+}
+function appendConcentration(concentrationTitle, concentrationArray, container)
+{
+    if (concentrationTitle == undefined || concentrationArray == undefined ||
+        container == undefined)
+        return;
+
+    var labelText = concentrationTitle + (concentrationArray.length > 1 ? "s" : ""),
+        content = createElement("ul"),
+        label = createElement("span").text(labelText);
+
+    for (var i in concentrationArray)
+        content.append(createElement("li").text(concentrationArray[i]));
+
+    container.append(label).append(content);
 }
 function populateStaffPage()
 {
