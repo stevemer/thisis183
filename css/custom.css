@@ -156,6 +156,17 @@ body
 	background: #d489b8;
 }
 
+@media (max-width: 855px)
+{
+	@media (min-width: 768px)
+	{
+		#join-tile h2
+		{
+			padding-top: 24px;
+		}
+	}
+}
+
 .progress-wheel
 {
 	padding-top: 64px;
