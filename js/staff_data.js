@@ -230,7 +230,7 @@ var _instructors = {
     GSIs: [
         new Instructor("Adam", "Schnitzer", "", [], [], "", "", "", "", [], []),
         new Instructor("Anna", "Wasewicz", "", [], [], "", "", "", "", [], []),
-        new Instructor("Billy", "Wolfington", "", ["Computer Science"], [], "W'14", "", "willwolf@umich.edu", "", [], []),
+        new Instructor("Billy", "Wolfington", "willwolf.jpg", ["Computer Science"], [], "W'14", "", "willwolf@umich.edu", "", [], []),
         new Instructor("Carolyn", "Vlach", "", [], [], "W'14", "", "", "", [], []),
         new Instructor("David", "Bonnen", "", [], [], "", "", "", "", [], []),
         new Instructor("Diana", "Slaba", "", [], [], "", "", "", "", [], []),
