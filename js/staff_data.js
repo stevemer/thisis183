@@ -1,11 +1,13 @@
-var _lectureSections = [
-	    {
-	        sectionNumber: "001",
-	        days: ["Monday", "Wednesday"],
-	        startTime: "08:30:00",
-	        endTime: "10:00:00",
-	        room: "1360 EH",
-	    },
+var _relativeImagePath = "../img/staff/",
+    _useDefaultImage = true,
+    _lectureSections = [
+        {
+            sectionNumber: "001",
+            days: ["Monday", "Wednesday"],
+            startTime: "08:30:00",
+            endTime: "10:00:00",
+            room: "1360 EH",
+        },
         {
             sectionNumber: "002",
             days: ["Monday", "Wednesday"],
@@ -29,13 +31,13 @@ var _lectureSections = [
         },
     ],
     _discussionSections = [     
-	    {
-	        sectionNumber: "011",
-	        days: ["Tuesday", ],
-	        startTime: "09:00:00",
-	        endTime: "10:00:00",
-	        room: "1046 DANA"
-	    },
+        {
+            sectionNumber: "011",
+            days: ["Tuesday", ],
+            startTime: "09:00:00",
+            endTime: "10:00:00",
+            room: "1046 DANA"
+        },
         {
             sectionNumber: "012",
             days: ["Tuesday", ],
@@ -148,8 +150,7 @@ var _lectureSections = [
             endTime: "16:00:00",
             room: "2255 NQ"
         },
-    ],
-    _relativeImagePath = "../img/staff/";
+    ];
 
 // Instrcutor ctor
 function Instructor(inFirstName, inLastName, inImageName, inMajors, inMinors,
@@ -174,11 +175,11 @@ function Instructor(inFirstName, inLastName, inImageName, inMajors, inMinors,
 // Adding member functions
 Instructor.prototype.getInstructorName = function ()
 {
-    var nameString = this.firstName + " " + this.lastName + ", ";
+    var nameString = this.firstName + " " + this.lastName;
     if (this.degree)
-        nameString += this.degree;
-    else
-        nameString += this.graduation;
+        nameString += ", " + this.degree;
+    else if (this.graduation)
+        nameString += ", " + this.graduation;
 
     return nameString;
 };
@@ -186,7 +187,7 @@ Instructor.prototype.getImagePath = function ()
 {
     var image = this.imageName;
     if (!image)
-        image = "default-photo.png"
+        image = "default-photo.png";
     return _relativeImagePath + image;
 };
 Instructor.prototype.getLectureSections = function ()
@@ -219,22 +220,22 @@ Instructor.prototype.getDiscussionSections = function ()
 
 var _instructors = {
 
-    professors: [,
-        new Instructor("Mary-Lou", "Dorf", "", [], [], "", "", "", "", [], []),
-        new Instructor("Jermey", "Gibson", "", [], [], "", "", "", "", [], []),
-        new Instructor("Bill", "Arthur", "", [], [], "", "", "", "", [], []),
+    professors: [
+        new Instructor("Mary-Lou", "Dorf", "mdorf.jpg", [], [], "", "Ph.D.", "mdorf@umich.edu", "http://www.eecs.umich.edu/eecs/etc/fac/facsearchform.cgi?mdorf+", [1, 2], []),
+        new Instructor("Jermey", "Gibson", "", [], [], "", "", "", "", [0], []),
+        new Instructor("Bill", "Arthur", "", [], [], "", "", "", "", [3], []),
     ],
 
 
     GSIs: [
         new Instructor("Adam", "Schnitzer", "", [], [], "", "", "", "", [], []),
         new Instructor("Anna", "Wasewicz", "", [], [], "", "", "", "", [], []),
-        new Instructor("Billy", "Wolfington", "", [], [], "", "", "", "", [], []),
-        new Instructor("Carolyn", "Vlach", "", [], [], "", "", "", "", [], []),
+        new Instructor("Billy", "Wolfington", "", ["Computer Science"], [], "W'14", "", "willwolf@umich.edu", "", [], []),
+        new Instructor("Carolyn", "Vlach", "", [], [], "W'14", "", "", "", [], []),
         new Instructor("David", "Bonnen", "", [], [], "", "", "", "", [], []),
         new Instructor("Diana", "Slaba", "", [], [], "", "", "", "", [], []),
-        new Instructor("Grace", "Kendall", "", [], [], "", "", "", "", [], []),
-        new Instructor("Jessica", "Wu", "", [], [], "", "", "", "", [], []),
+        new Instructor("Grace", "Kendall", "", [], [], "W'15", "", "", "", [], []),
+        new Instructor("Jessica", "Wu", "", [], [], "W'15", "", "", "", [], []),
         new Instructor("Lisa", "Dion", "", [], [], "", "", "", "", [], []),
         new Instructor("Madeline", "Enders", "", [], [], "", "", "", "", [], []),
         new Instructor("Maxim", "Aleksa", "", [], [], "", "", "", "", [], []),
@@ -242,8 +243,8 @@ var _instructors = {
         new Instructor("Reed", "Coke", "", [], [], "", "", "", "", [], []),
         new Instructor("Ryan", "Cesiel", "", [], [], "", "", "", "", [], []),
         new Instructor("Shibamouli", "Lahiri", "", [], [], "", "", "", "", [], []),
-        new Instructor("Steve", "Merritt", "", [], [], "", "", "", "", [], []),
-        new Instructor("Tim", "Wurman", "", [], [], "", "", "", "", [], []),
+        new Instructor("Steve", "Merritt", "", [], [], "W'14", "", "", "", [], []),
+        new Instructor("Tim", "Wurman", "", [], [], "W'14", "", "", "", [], []),
         new Instructor("Timothy", "Lewis", "", [], [], "", "", "", "", [], []),
     ],
 };
