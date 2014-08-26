@@ -68,12 +68,11 @@ var NUM_COLMNS = 12,
         xs: 2,
     };
 
-// TODO: handle case where numProfs causes bleed to next line
-function populateProfessorRow()
+// TODO: handle case where numInstructors causes bleed to next line
+function populateInstructorRow(instructorGetter, rowSelector)
 {
-    var professorsDef = getProfessors(),
-        numProfs = professorsDef.length,
-        staffRow = $("#professor-row"),
+    var instructorDef = instructorGetter(),
+        numInstructors = instructorDef.length,
         columnWidths = {};
 
 
@@ -81,21 +80,22 @@ function populateProfessorRow()
     for (var attr in MAX_STAFF_IN_ROW)
     {
         var maxInRow = MAX_STAFF_IN_ROW[attr];
-        if (maxInRow >= numProfs)
-            columnWidths[attr] = NUM_COLMNS / numProfs;
+        if (maxInRow >= numInstructors)
+            columnWidths[attr] = NUM_COLMNS / numInstructors;
         else
             columnWidths[attr] = NUM_COLMNS / maxInRow;
     }
 
-    var professorRow = $("#professor-row");
-    for (var i in professorsDef)
+    var instructorRow = $(rowSelector);
+    for (var i = 0; i < numInstructors; i++)
     {
-        var professor = professorsDef[i],
+        var instructor = instructorDef[i],
             staffMemberElement = createElement("div").addClass("staff-member"),
             imgWrapper = createElement("div").addClass("img-wrapper"),
-            img = createElement("img").addClass("img-responsive").attr("src", professor.getImagePath()),
+            img = createElement("img").addClass("img-responsive").attr("src", instructor.getImagePath()),
             staffName = createElement("p").addClass("staff-member-name");
      
+
         // place column width classes on staff-member element
         for (var attr in columnWidths)
             staffMemberElement.addClass("col-" + attr + "-" + columnWidths[attr]);
@@ -103,14 +103,15 @@ function populateProfessorRow()
 
         // append children
         staffMemberElement.append(imgWrapper.append(img));
-        staffMemberElement.append(staffName.text(professor.getInstructorName()));
+        staffMemberElement.append(staffName.text(instructor.getInstructorName()));
 
 
         // append to container
-        professorRow.append(staffMemberElement);
+        instructorRow.append(staffMemberElement);
     }
 }
 function populateStaffPage()
 {
-    populateProfessorRow();
+    populateInstructorRow(getProfessors, "#professor-row");
+    populateInstructorRow(getGSIs, "#gsi-row");
 }
