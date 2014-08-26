@@ -29,7 +29,7 @@ function changePage()
 	});
 }
 
-var LAST_LIVE_POPOVER;
+var LAST_LIVE_POPOVER = undefined;
 
 function loadPage()
 {
@@ -62,17 +62,27 @@ function loadPage()
 	        populateStaffPage();
             
             var popoverOptions = {
-                container: "body",
-                content: "Hello World",
+                container: "#wrapper #content",
+                placement: "bottom"
             };
             $(".staff-member img").click(function() {
                 var currentPopover = $(this);
                 if (LAST_LIVE_POPOVER)
                 {
-                    LAST_LIVE_POPOVER.popover("destroy");
-                    LAST_LIVE_POPOVER = undefined;
+                    if (LAST_LIVE_POPOVER[0] === currentPopover[0])
+                    {
+                        // popover already handles toggle, don't need to do anything
+                        return;
+                    }
+                    else
+                    {
+                        LAST_LIVE_POPOVER.popover("destroy");
+                        LAST_LIVE_POPOVER = undefined;
+                    }
                 }
 
+                popoverOptions.content = $(this).parents(".staff-member").find(".staff-info").html();
+                popoverOptions.html = true;
                 currentPopover.popover(popoverOptions).popover("show");
                 LAST_LIVE_POPOVER = currentPopover;
             });
@@ -149,14 +159,41 @@ function populateInstructorRow(instructorGetter, rowSelector)
         // append children
         staffMemberElement.append(imgWrapper.append(img));
         staffMemberElement.append(staffName.text(instructor.getInstructorName()));
-
+        staffMemberElement.append(createStaffInfo(instructor));
 
         // append to container
         instructorRow.append(staffMemberElement);
     }
 }
-function test() {
-    alert("");
+function createStaffInfo(instructorDef)
+{
+    if (instructorDef == undefined)
+        return;
+
+    var infoContainer = createElement("div").addClass("hidden staff-info"),
+        websiteContainer = createElement("div").addClass("staff-website-wrapper"),
+        emailContainer = createElement("div").addClass("staff-email-wrapper"),
+        label,
+        content;
+
+    if (instructorDef.website)
+    {
+        label = createElement("span").text("Website: ");
+        content = createElement("a").attr("href", instructorDef.website).text(instructorDef.website);
+        websiteContainer.append(label).append(content);
+        
+        infoContainer.append(websiteContainer);
+    }
+    if (instructorDef.email)
+    {
+        label = createElement("span").text("Email: ");
+        content = createElement("a").attr("href", "mailto:" + instructorDef.email).text(instructorDef.email);
+        emailContainer.append(label).append(content);
+
+        infoContainer.append(emailContainer);
+    }
+
+    return infoContainer;
 }
 function populateStaffPage()
 {
