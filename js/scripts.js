@@ -68,7 +68,7 @@ var NUM_COLMNS = 12,
         xs: 2,
     };
 
-// TODO: handle case where numInstructors causes bleed to next line
+
 function populateInstructorRow(instructorGetter, rowSelector)
 {
     var instructorDef = instructorGetter(),
