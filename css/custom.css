@@ -252,6 +252,12 @@ a:focus:hover
 	padding-top: 8px;
 }
 
+.staff-majors-wrapper ul,
+.staff-minors-wrapper ul
+{
+    margin-bottom: 0px;
+}
+
 .sidebar-nav .fa-caret-up
 {
 	float: right;
