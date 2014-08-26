@@ -52,101 +52,101 @@ var _lectureSections = [
         },
         {
             sectionNumber: "014",
-            days: ["Tuesday", ],
-            startTime: "09:00:00",
-            endTime: "10:00:00",
-            room: "1046 DANA"
+            days: ["Thursday", ],
+            startTime: "12:00:00",
+            endTime: "13:00:00",
+            room: "2024 DANA"
         },
         {
             sectionNumber: "015",
-            days: ["Tuesday", ],
-            startTime: "09:00:00",
-            endTime: "10:00:00",
-            room: "1046 DANA"
+            days: ["Friday", ],
+            startTime: "13:00:00",
+            endTime: "14:00:00",
+            room: "1028 DANA"
         },
         {
             sectionNumber: "016",
-            days: ["Tuesday", ],
-            startTime: "09:00:00",
-            endTime: "10:00:00",
-            room: "1046 DANA"
+            days: ["Monday", ],
+            startTime: "16:00:00",
+            endTime: "17:00:00",
+            room: "G550 DENT"
         },
         {
             sectionNumber: "017",
-            days: ["Tuesday", ],
-            startTime: "09:00:00",
-            endTime: "10:00:00",
-            room: "1046 DANA"
+            days: ["Wednesday", ],
+            startTime: "16:00:00",
+            endTime: "17:00:00",
+            room: "G550 DENT"
         },
         {
             sectionNumber: "018",
-            days: ["Tuesday", ],
-            startTime: "09:00:00",
-            endTime: "10:00:00",
-            room: "1046 DANA"
+            days: ["Thursday", ],
+            startTime: "13:00:00",
+            endTime: "14:00:00",
+            room: "R0220 BUS"
         },
         {
             sectionNumber: "019",
             days: ["Tuesday", ],
-            startTime: "09:00:00",
-            endTime: "10:00:00",
-            room: "1046 DANA"
+            startTime: "15:00:00",
+            endTime: "16:00:00",
+            room: "1300 CHEM"
         },
         {
             sectionNumber: "020",
             days: ["Tuesday", ],
-            startTime: "09:00:00",
-            endTime: "10:00:00",
-            room: "1046 DANA"
+            startTime: "16:00:00",
+            endTime: "17:00:00",
+            room: "G550 DENT"
         },
         {
             sectionNumber: "021",
             days: ["Tuesday", ],
-            startTime: "09:00:00",
-            endTime: "10:00:00",
-            room: "1046 DANA"
+            startTime: "11:00:00",
+            endTime: "12:00:00",
+            room: "G550 DENT"
         },
         {
             sectionNumber: "022",
             days: ["Tuesday", ],
-            startTime: "09:00:00",
-            endTime: "10:00:00",
-            room: "1046 DANA"
+            startTime: "14:00:00",
+            endTime: "15:00:00",
+            room: "1024 DANA"
         },
         {
             sectionNumber: "023",
-            days: ["Tuesday", ],
-            startTime: "09:00:00",
-            endTime: "10:00:00",
-            room: "1046 DANA"
+            days: ["Thursday", ],
+            startTime: "14:00:00",
+            endTime: "15:00:00",
+            room: "2548 CCL"
         },
         {
             sectionNumber: "024",
-            days: ["Tuesday", ],
-            startTime: "09:00:00",
-            endTime: "10:00:00",
-            room: "1046 DANA"
+            days: ["Thursday", ],
+            startTime: "15:00:00",
+            endTime: "16:00:00",
+            room: "ARR"
         },
         {
             sectionNumber: "025",
-            days: ["Tuesday", ],
-            startTime: "09:00:00",
-            endTime: "10:00:00",
-            room: "1046 DANA"
+            days: ["Friday", ],
+            startTime: "10:00:00",
+            endTime: "11:00:00",
+            room: "B844 EH"
         },
         {
             sectionNumber: "026",
-            days: ["Tuesday", ],
-            startTime: "09:00:00",
-            endTime: "10:00:00",
-            room: "1046 DANA"
+            days: ["Friday", ],
+            startTime: "11:00:00",
+            endTime: "12:00:00",
+            room: "G390 DENT"
         },
         {
             sectionNumber: "027",
-            days: ["Tuesday", ],
-            startTime: "09:00:00",
-            endTime: "10:00:00",
-            room: "1046 DANA"
+            days: ["Wednesday", ],
+            startTime: "15:00:00",
+            endTime: "16:00:00",
+            room: "2255 NQ"
         },
     ],
     _relativeImagePath = "../img/staff/";
