@@ -75,17 +75,6 @@ function populateInstructorRow(instructorGetter, rowSelector)
         numInstructors = instructorDef.length,
         columnWidths = {};
 
-
-    // determine column widths
-    for (var attr in MAX_STAFF_IN_ROW)
-    {
-        var maxInRow = MAX_STAFF_IN_ROW[attr];
-        if (maxInRow >= numInstructors)
-            columnWidths[attr] = NUM_COLMNS / numInstructors;
-        else
-            columnWidths[attr] = NUM_COLMNS / maxInRow;
-    }
-
     var instructorRow = $(rowSelector);
     for (var i = 0; i < numInstructors; i++)
     {
@@ -94,7 +83,20 @@ function populateInstructorRow(instructorGetter, rowSelector)
             imgWrapper = createElement("div").addClass("img-wrapper"),
             img = createElement("img").addClass("img-responsive").attr("src", instructor.getImagePath()),
             staffName = createElement("p").addClass("staff-member-name");
-     
+        
+        for (var attr in MAX_STAFF_IN_ROW)
+        {
+            var maxInRow = MAX_STAFF_IN_ROW[attr];
+            // check if row for given size has been filled
+            if (i % maxInRow == 0)
+            {
+                // update row
+                if (maxInRow >= numInstructors - i)
+                    columnWidths[attr] = NUM_COLMNS / (numInstructors - i);
+                else
+                    columnWidths[attr] = NUM_COLMNS / maxInRow;
+            }
+        }
 
         // place column width classes on staff-member element
         for (var attr in columnWidths)
