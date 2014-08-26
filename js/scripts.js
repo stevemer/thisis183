@@ -14,6 +14,7 @@ $(document).ready(function()
 	window.onhashchange = loadPage;
 });
 
+var LAST_LIVE_POPOVER;
 function loadPage()
 {
 	var page = window.location.hash.substring(1);
@@ -41,11 +42,26 @@ function loadPage()
 	$("#" + page + "-button").addClass("active");
 	$('#content').load('../pages/' + page + '.html', function (response, status, xhr)
 	{
-	    if (page == "staff" && status == "success")
+	    if (page == "staff" && status == "success") {
 	        populateStaffPage();
-	});
-	
-	
+            
+            var popoverOptions = {
+                container: "body",
+                content: "Hello World",
+            };
+            $(".staff-member img").click(function() {
+                var currentPopover = $(this);
+                if (LAST_LIVE_POPOVER)
+                {
+                    LAST_LIVE_POPOVER.popover("destroy");
+                    LAST_LIVE_POPOVER = undefined;
+                }
+
+                currentPopover.popover(popoverOptions).popover("show");
+                LAST_LIVE_POPOVER = currentPopover;
+            });
+        }
+	});	
 }
 
 function removeProgressWheel()
@@ -92,7 +108,9 @@ function populateInstructorRow(instructorGetter, rowSelector)
             imgWrapper = createElement("div").addClass("img-wrapper"),
             img = createElement("img").addClass("img-responsive").attr("src", instructor.getImagePath()),
             staffName = createElement("p").addClass("staff-member-name");
-        
+
+
+        // determine column widths
         for (var attr in MAX_STAFF_IN_ROW)
         {
             var maxInRow = MAX_STAFF_IN_ROW[attr];
@@ -121,7 +139,9 @@ function populateInstructorRow(instructorGetter, rowSelector)
         instructorRow.append(staffMemberElement);
     }
 }
-
+function test() {
+    alert("");
+}
 function populateStaffPage()
 {
     populateInstructorRow(getProfessors, "#professor-row");
