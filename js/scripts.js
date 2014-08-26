@@ -2,8 +2,16 @@ $(document).ready(function()
 {
 	loadPage();
 
-	window.onhashchange = loadPage;
+	$("#sidebar-wrapper li").click(function()
+	{
+		target = $('> a', this).attr("href");
+		if (target[0] == '#')
+		{
+			loadPage();
+		}
+	});
 
+	window.onhashchange = loadPage;
 });
 
 function loadPage()
@@ -55,6 +63,7 @@ function getProfessors()
 {
     return _instructors.professors;
 }
+
 function getGSIs()
 {
     return _instructors.GSIs;
@@ -112,6 +121,7 @@ function populateInstructorRow(instructorGetter, rowSelector)
         instructorRow.append(staffMemberElement);
     }
 }
+
 function populateStaffPage()
 {
     populateInstructorRow(getProfessors, "#professor-row");
