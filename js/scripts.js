@@ -173,6 +173,7 @@ function createStaffInfo(instructorDef)
     var infoContainer = createElement("div").addClass("hidden staff-info"),
         websiteContainer = createElement("div").addClass("staff-website-wrapper"),
         emailContainer = createElement("div").addClass("staff-email-wrapper"),
+        majorsContainer = createElement("div").addClass("staff-majors-wrapper"),
         label,
         content;
 
@@ -191,6 +192,17 @@ function createStaffInfo(instructorDef)
         emailContainer.append(label).append(content);
 
         infoContainer.append(emailContainer);
+    }
+    if (instructorDef.concentration.majors.length)
+    {
+        var labelText = "Major" + (instructorDef.concentration.majors.length > 1 ? "s" : "");
+        content = createElement("ul");
+        label = createElement("span").text(labelText);
+        for (var i in instructorDef.concentration.majors)
+            content.append(createElement("li").text(instructorDef.concentration.majors[i]));
+        majorsContainer.append(label).append(content);
+
+        infoContainer.append(majorsContainer);
     }
 
     return infoContainer;
