@@ -167,6 +167,19 @@ body
 	}
 }
 
+a:focus
+{
+    outline: none !important;
+    color: #428bca;
+    text-decoration: none;
+}
+
+a:focus:hover
+{
+	color: #2D6594;
+    text-decoration: underline;
+}
+
 .progress-wheel
 {
 	padding-top: 64px;
@@ -250,4 +263,9 @@ body
     -ms-transform: rotate(180deg); /* IE 9 */
     -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
     transform: rotate(180deg);
+}
+
+#deadlines > p
+{
+	margin: 0;
 }
