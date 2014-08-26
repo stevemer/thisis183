@@ -251,8 +251,7 @@ a:focus:hover
 	padding-top: 8px;
 }
 
-.staff-majors-wrapper ul,
-.staff-minors-wrapper ul
+.popover-content ul
 {
     margin-bottom: 0px;
 }
