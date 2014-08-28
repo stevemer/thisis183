@@ -5,7 +5,7 @@ $(document).ready(function()
 	$("#sidebar-wrapper li").click(function()
 	{
 		target = $('> a', this).attr("href");
-		if (target[0] == '#')
+		if ($(this).hasClass('active') && target[0] == '#')
 		{
 			loadPage();
 		}
