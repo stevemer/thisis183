@@ -228,7 +228,7 @@ var _instructors = {
 
 
     GSIs: [
-        new Instructor("Adam", "Schnitzer", "", [], [], "", "", "", "", [], []),
+        new Instructor("Adam", "Schnitzer", "", ["Computer Science"], [], "W'15", "", "adamschn@umich.edu", "adamschnitzer.com", [], []),
         new Instructor("Anna", "Wasewicz", "", [], [], "", "", "", "", [], []),
         new Instructor("Billy", "Wolfington", "willwolf.jpg", ["Computer Science"], [], "W'15", "", "willwolf@umich.edu", "", [], [1,3]),
         new Instructor("Carolyn", "Vlach", "", [], [], "W'15", "", "", "", [], []),
@@ -238,13 +238,13 @@ var _instructors = {
         new Instructor("Jessica", "Wu", "", [], [], "W'16", "", "", "", [], []),
         new Instructor("Lisa", "Dion", "", ["Computer Science"], [], "2nd year Ph.D.", "", "", "", [], []),
         new Instructor("Madeline", "Enders", "", [], [], "", "", "", "", [], []),
-        new Instructor("Maxim", "Aleksa", "maxim.png", ["Computer Science", "Romance Languages and Literatures",], ["Master of the Universe"], "W'17", "", "maximal@umich.edu", "umich.edu/maximal", [3], [5, 2, 3]),
+        new Instructor("Maxim", "Aleksa", "maxim.png", ["Computer Science", "Romance Languages and Literatures",], ["Master of the Universe"], "W'17", "", "maximal@umich.edu", "umich.edu/~maximal", [3], [5, 2, 3]),
         new Instructor("Michael", "Vianueva", "", ["Computer Science", "History"], ["German"], "W'15", "", "vianuevm@umich.edu", "github.com/vianuevm", [], []),
-        new Instructor("Reed", "Coke", "", [], [], "", "", "", "", [], []),
+        new Instructor("Reed", "Coke", "", ["Computer Science", "Linguistics"], [], "2nd year Ph.D.", "", "reedcoke@umich.edu", "", [], []),
         new Instructor("Ryan", "Cesiel", "", ["Computer Science", "BBA",], [], "", "", "ryances@umich.edu", "ryancesiel.com", [], []),
         new Instructor("Shibamouli", "Lahiri", "", ["Computer Science"], [], "1st year Ph.D.", "", "lahiri@umich.edu", "", [], []),
         new Instructor("Steve", "Merritt", "", [], [], "W'15", "", "", "", [], []),
         new Instructor("Tim", "Wurman", "", [], [], "W'15", "", "", "", [], []),
-        new Instructor("Timothy", "Lewis", "", [], [], "", "", "", "", [], []),
+        new Instructor("Timothy", "Lewis", "", ["Computer Science"], [], "1st year Ph.D.", "", "timlewis@umich.edu", "", [], []),
     ],
 };
