@@ -1,4 +1,10 @@
-$(document).ready(function()
+// Returns a jQuery object that is an HTML tag of type elementType
+function createElement(elementType)
+{
+    return $(document.createElement(elementType));
+}
+
+$(document).ready(function ()
 {
 	loadPage();
 
@@ -21,6 +27,7 @@ $(window).resize(function ()
         LAST_LIVE_POPOVER.popover("show");
     
 })
+
 
 var LAST_LIVE_POPOVER = undefined;
 function loadPage()
@@ -54,32 +61,7 @@ function loadPage()
 	    {
 	        populateStaffPage();
             
-            $(".staff-member img").click(function() {
-                var currentPopover = $(this);
-                if (LAST_LIVE_POPOVER)
-                {
-                    if (LAST_LIVE_POPOVER[0] === currentPopover[0])
-                    {
-                        // popover already handles toggle, don't need to do anything
-                        return;
-                    }
-                    else
-                    {
-                        LAST_LIVE_POPOVER.popover("destroy");
-                        LAST_LIVE_POPOVER = undefined;
-                    }
-                }
-
-                var popoverOptions = {
-                    container: "#wrapper #content",
-                    placement: "bottom",
-                    title: $(this).parents(".staff-member").find(".staff-member-name").html(),
-                    content: $(this).parents(".staff-member").find(".staff-info").html(),
-                    html: true
-                };
-                currentPopover.popover(popoverOptions).popover("show");
-                LAST_LIVE_POPOVER = currentPopover;
-            });
+            $(".staff-member img").click(togglePopover);
         }
 	});	
 }
@@ -88,18 +70,37 @@ function removeProgressWheel()
 {
 	$('.progress-wheel').remove();
 }
-
-// Returns a jQuery object that is an HTML tag of type elementType
-function createElement(elementType)
+function togglePopover()
 {
-    return $(document.createElement(elementType));
+    var currentPopover = $(this);
+    if (LAST_LIVE_POPOVER)
+    {
+        if (LAST_LIVE_POPOVER[0] === currentPopover[0])
+            // popover already handles toggle, don't need to do anything
+            return;
+
+
+        LAST_LIVE_POPOVER.popover("destroy");
+        LAST_LIVE_POPOVER = undefined;
+
+    }
+
+    var popoverOptions = {
+        container: "#wrapper #content",
+        placement: "bottom",
+        title: currentPopover.parents(".staff-member").find(".staff-member-name").html(),
+        content: currentPopover.parents(".staff-member").find(".staff-info").html(),
+        html: true
+    };
+    currentPopover.popover(popoverOptions).popover("show");
+    LAST_LIVE_POPOVER = currentPopover;
 }
+
 
 function getProfessors()
 {
     return _instructors.professors;
 }
-
 function getGSIs()
 {
     return _instructors.GSIs;
@@ -108,61 +109,19 @@ function getGSIs()
 
 var NUM_COLMNS = 12,
     MAX_STAFF_IN_ROW = { // values must be multiples of NUM_COLUMNS
+        lg: 6,
         md: 4,
         sm: 3,
         xs: 2,
     };
 
-
-function populateInstructorRow(instructorGetter, rowSelector)
-{
-    var instructorDef = instructorGetter(),
-        numInstructors = instructorDef.length,
-        columnWidths = {};
-
-    var instructorRow = $(rowSelector);
-    for (var i = 0; i < numInstructors; i++)
-    {
-        var instructor = instructorDef[i],
-            staffMemberElement = createElement("div").addClass("staff-member"),
-            imgWrapper = createElement("div").addClass("img-wrapper"),
-            img = createElement("img").addClass("img-responsive").attr("src", instructor.getImagePath()),
-            staffName = createElement("p").addClass("staff-member-name");
-
-
-        // determine column widths
-        for (var attr in MAX_STAFF_IN_ROW)
-        {
-            var maxInRow = MAX_STAFF_IN_ROW[attr];
-            // check if row for given size has been filled
-            if (i % maxInRow == 0)
-            {
-                // update row
-                if (maxInRow >= numInstructors - i)
-                    columnWidths[attr] = NUM_COLMNS / (numInstructors - i);
-                else
-                    columnWidths[attr] = NUM_COLMNS / maxInRow;
-            }
-        }
-
-        // place column width classes on staff-member element
-        for (var attr in columnWidths)
-            staffMemberElement.addClass("col-" + attr + "-" + columnWidths[attr]);
-
-
-        // append children
-        staffMemberElement.append(imgWrapper.append(img));
-        staffMemberElement.append(staffName.text(instructor.getInstructorName()));
-        staffMemberElement.append(createStaffInfo(instructor));
-
-        // append to container
-        instructorRow.append(staffMemberElement);
-    }
-}
 function createStaffInfo(instructorDef)
 {
     if (instructorDef == undefined)
+    {
+        console.log("createStaffInfo::instructorDef is undefined");
         return;
+    }
 
     var infoContainer = createElement("div").addClass("hidden staff-info"),
         content;
@@ -185,7 +144,7 @@ function createStaffInfo(instructorDef)
     if (classInfo.children().length)
         infoContainer.append(classInfo);
 
- 
+
     // append contact info
     var contactInfo = createElement("div").addClass("staff-info-category");
     if (instructorDef.website)
@@ -193,7 +152,7 @@ function createStaffInfo(instructorDef)
         var websiteContainer = createElement("div").addClass("staff-website-wrapper");
         content = createElement("a").attr("href", "http://" + instructorDef.website).text(instructorDef.website);
         websiteContainer.append(content);
-        
+
         contactInfo.append(websiteContainer);
     }
     if (instructorDef.email)
@@ -231,15 +190,74 @@ function createStaffInfo(instructorDef)
 
     return infoContainer;
 }
+function populateInstructorRow(instructorGetter, rowSelector)
+{
+    if (typeof instructorGetter != "function")
+    {
+        console.log("populateInstructorRow::instructorGetter isn't a function");
+        return;
+    }
+    if (typeof rowSelector == undefined)
+    {
+        console.log("populateInstructorRow::rowSelector is undefined");
+        return;
+    }
 
+    var instructorDef = instructorGetter(),
+        numInstructors = instructorDef.length,
+        columnWidths = {};
+
+    var instructorRow = $(rowSelector);
+    for (var i = 0; i < numInstructors; i++)
+    {
+        var instructor = instructorDef[i],
+            staffMemberElement = createElement("div").addClass("staff-member"),
+            imgWrapper = createElement("div").addClass("img-wrapper"),
+            img = createElement("img").addClass("img-responsive").attr("src", instructor.getImagePath()),
+            staffName = createElement("p").addClass("staff-member-name");
+
+
+        // determine column widths
+        for (var attr in MAX_STAFF_IN_ROW)
+        {
+            var maxInRow = MAX_STAFF_IN_ROW[attr];
+            // check if grid row for given size has been filled
+            if (i % maxInRow == 0)
+            {
+                // update row
+                if (maxInRow >= numInstructors - i)
+                    columnWidths[attr] = NUM_COLMNS / (numInstructors - i);
+                else
+                    columnWidths[attr] = NUM_COLMNS / maxInRow;
+            }
+        }
+
+        // place column width classes on staff-member element
+        for (var attr in columnWidths)
+            staffMemberElement.addClass("col-" + attr + "-" + columnWidths[attr]);
+
+
+        // append children
+        staffMemberElement.append(imgWrapper.append(img));
+        staffMemberElement.append(staffName.text(instructor.getInstructorName()));
+        staffMemberElement.append(createStaffInfo(instructor));
+
+        // append to row
+        instructorRow.append(staffMemberElement);
+    }
+}
+
+
+// Requires: timestamp is a string in the format hh:mm[:ss]
 function formatTimeStamp(timestamp)
 {
     timestamp = timestamp.split(":");
     timestamp[0] = parseInt(timestamp[0]);
+
     var daytimeLabel = "am";
     if (timestamp[0] >= 12)
         daytimeLabel = "pm";
-    if (timestamp[0] > 12)
+    if (timestamp[0] > 12) // convert from 24 hr to 12 hr
         timestamp[0] -= 12;
 
     return timestamp[0] + ":" + timestamp[1] + daytimeLabel;
@@ -247,10 +265,13 @@ function formatTimeStamp(timestamp)
 function formatClassTime(section)
 {
     var dayAbbrev = section.days[0][0],
-        formattedTime = dayAbbrev;
+        formattedTime;
+
+
+    // append days of the week
+    formattedTime = dayAbbrev
     if (dayAbbrev == "T" && section.days[0][1] == "h")
         formattedTime += "h";
-
     for (var i = 1; i < section.days.length; i++)
     {
         dayAbbrev = section.days[i][0];
@@ -259,9 +280,10 @@ function formatClassTime(section)
         formattedTime += ", " + dayAbbrev;
     }
 
+
+    // append start and end times
     var startTime = formatTimeStamp(section.startTime),
         endTime = formatTimeStamp(section.endTime);
-
     formattedTime += " " + startTime + "-" + endTime;
 
     return formattedTime;
@@ -271,6 +293,7 @@ function appendClasses(classType, classArray, container)
     var labelText = classType + (classArray.length > 1 ? "s" : ""),
         label = createElement("span").text(labelText),
         content = createElement("ul");
+
     for (var i in classArray)
     {
         content.append(createElement("li").text(formatClassTime(classArray[i])));
@@ -285,7 +308,7 @@ function appendConcentration(concentrationTitle, concentrationArray, container)
         container == undefined)
         return;
 
-    var labelText = concentrationTitle,// + (concentrationArray.length > 1 ? "s" : ""),
+    var labelText = concentrationTitle,
         content = createElement("span"),
         label = createElement("span").text(labelText);
 
@@ -293,7 +316,7 @@ function appendConcentration(concentrationTitle, concentrationArray, container)
     for (var i = 1; i < concentrationArray.length; i++)
     {
         var textVal = concentrationArray[i];
-        if (i == concentrationArray.length - 1)
+        if (i == concentrationArray.length - 1) // append and for last in list
             textVal = ", and " + textVal;
         else
             textVal = ", " + textVal;
