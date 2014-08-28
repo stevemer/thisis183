@@ -231,7 +231,7 @@ var _instructors = {
         new Instructor("Adam", "Schnitzer", "", ["Computer Science"], [], "W'15", "", "adamschn@umich.edu", "adamschnitzer.com", [], []),
         new Instructor("Anna", "Wasewicz", "", ["Computer Science"], [], "W'16", "", "wasewicz@umich.edu", "", [], []),
         new Instructor("Billy", "Wolfington", "willwolf.jpg", ["Computer Science"], [], "W'15", "", "willwolf@umich.edu", "", [], [1,3]),
-        new Instructor("Carolyn", "Vlach", "", [], [], "W'15", "", "", "", [], []),
+        new Instructor("Carolyn", "Vlach", "", ["Computer Science", "Discrete and Algorithmic Methods", "Spanish"], [], "W'15", "", "vlachcj@umich.edu", "", [], []),
         new Instructor("David", "Bonnen", "", ["Computer Science", "Statistics", ], [], "W'15", "", "dbonnen@umich.edu", "", [], []),
         new Instructor("Diana", "Slaba", "", ["Computer Science"], [], "W'16", "", "dkslaba@umich.edu", "", [], []),
         new Instructor("Grace", "Kendall", "", [], [], "W'16", "", "", "", [], []),

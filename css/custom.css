@@ -256,6 +256,11 @@ a:focus:hover
     margin-bottom: 0px;
 }
 
+.popover-content .staff-member-name
+{
+    text-align: center;
+}
+
 .sidebar-nav .fa-caret-up
 {
 	float: right;

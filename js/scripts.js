@@ -72,10 +72,11 @@ function loadPage()
 
                 var popoverOptions = {
                     container: "#wrapper #content",
-                    placement: "bottom"
+                    placement: "bottom",
+                    content: ($(this).parents(".staff-member").find(".staff-name-wrapper").html() +
+                              $(this).parents(".staff-member").find(".staff-info").html()),
+                    html: true
                 };
-                popoverOptions.content = $(this).parents(".staff-member").find(".staff-info").html();
-                popoverOptions.html = true;
                 currentPopover.popover(popoverOptions).popover("show");
                 LAST_LIVE_POPOVER = currentPopover;
             });
@@ -126,7 +127,8 @@ function populateInstructorRow(instructorGetter, rowSelector)
             staffMemberElement = createElement("div").addClass("staff-member"),
             imgWrapper = createElement("div").addClass("img-wrapper"),
             img = createElement("img").addClass("img-responsive").attr("src", instructor.getImagePath()),
-            staffName = createElement("p").addClass("staff-member-name");
+            staffName = createElement("p").addClass("staff-member-name"),
+            staffNameWrapper = createElement("div").addClass("staff-name-wrapper");
 
 
         // determine column widths
@@ -151,7 +153,8 @@ function populateInstructorRow(instructorGetter, rowSelector)
 
         // append children
         staffMemberElement.append(imgWrapper.append(img));
-        staffMemberElement.append(staffName.text(instructor.getInstructorName()));
+        staffNameWrapper.append(staffName.text(instructor.getInstructorName()))
+        staffMemberElement.append(staffNameWrapper);
         staffMemberElement.append(createStaffInfo(instructor));
 
         // append to container
@@ -175,27 +178,25 @@ function createStaffInfo(instructorDef)
 
     if (instructorDef.lectures.length)
     {
-        appendClasses("Lecture Section", instructorDef.getLectureSections(), lectureContainer);
+        appendClasses("Lecture", instructorDef.getLectureSections(), lectureContainer);
         infoContainer.append(lectureContainer);
     }
     if (instructorDef.discussions.length)
     {
-        appendClasses("Discussion Section", instructorDef.getDiscussionSections(), discussionContainer);
+        appendClasses("Discussion", instructorDef.getDiscussionSections(), discussionContainer);
         infoContainer.append(discussionContainer);
     }
     if (instructorDef.website)
     {
-        label = createElement("span").text("Website: ");
-        content = createElement("a").attr("href", instructorDef.website).text(instructorDef.website);
-        websiteContainer.append(label).append(content);
+        content = createElement("a").attr("href", "http://" + instructorDef.website).text(instructorDef.website);
+        websiteContainer.append(content);
         
         infoContainer.append(websiteContainer);
     }
     if (instructorDef.email)
     {
-        label = createElement("span").text("Email: ");
         content = createElement("a").attr("href", "mailto:" + instructorDef.email).text(instructorDef.email);
-        emailContainer.append(label).append(content);
+        emailContainer.append(content);
 
         infoContainer.append(emailContainer);
     }
@@ -212,6 +213,7 @@ function createStaffInfo(instructorDef)
 
     return infoContainer;
 }
+
 function formatTimeStamp(timestamp)
 {
     timestamp = timestamp.split(":");
@@ -226,10 +228,17 @@ function formatTimeStamp(timestamp)
 }
 function formatClassTime(section)
 {
-    var formattedTime = section.days[0] + "s";
+    var dayAbbrev = section.days[0][0],
+        formattedTime = dayAbbrev;
+    if (dayAbbrev == "T" && section.days[0][1] == "h")
+        formattedTime += "h";
+
     for (var i = 1; i < section.days.length; i++)
     {
-        formattedTime += ", " + section.days[i] + "s";
+        dayAbbrev = section.days[i][0];
+        if (dayAbbrev == "T" && section.days[i][1] == "h")
+            dayAbbrev += "h";
+        formattedTime += ", " + dayAbbrev;
     }
 
     var startTime = formatTimeStamp(section.startTime),
@@ -239,6 +248,7 @@ function formatClassTime(section)
 
     return formattedTime;
 }
+
 function appendClasses(classType, classArray, container)
 {
     var labelText = classType + (classArray.length > 1 ? "s" : ""),
@@ -266,6 +276,7 @@ function appendConcentration(concentrationTitle, concentrationArray, container)
 
     container.append(label).append(content);
 }
+
 function populateStaffPage()
 {
     populateInstructorRow(getProfessors, "#professor-row");
