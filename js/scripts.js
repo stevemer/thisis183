@@ -31,13 +31,12 @@ function changePage()
 
 var LAST_LIVE_POPOVER = undefined;
 
+// repositions visible popover during resize
 $(window).resize(function ()
 {
     if (LAST_LIVE_POPOVER)
-    {
-        // repositions visible popover during resize
         LAST_LIVE_POPOVER.popover("show");
-    }
+    
 })
 
 function loadPage()
@@ -67,7 +66,8 @@ function loadPage()
 	$("#" + page + "-button").addClass("active");
 	$('#content').load('pages/' + page + '.html', function (response, status, xhr)
 	{
-	    if (page == "staff" && status == "success") {
+	    if (page == "staff" && status == "success")
+	    {
 	        populateStaffPage();
             
             $(".staff-member img").click(function() {
@@ -89,8 +89,8 @@ function loadPage()
                 var popoverOptions = {
                     container: "#wrapper #content",
                     placement: "bottom",
-                    content: ($(this).parents(".staff-member").find(".staff-name-wrapper").html() +
-                              $(this).parents(".staff-member").find(".staff-info").html()),
+                    title: $(this).parents(".staff-member").find(".staff-member-name").html(),
+                    content: $(this).parents(".staff-member").find(".staff-info").html(),
                     html: true
                 };
                 currentPopover.popover(popoverOptions).popover("show");
@@ -143,8 +143,7 @@ function populateInstructorRow(instructorGetter, rowSelector)
             staffMemberElement = createElement("div").addClass("staff-member"),
             imgWrapper = createElement("div").addClass("img-wrapper"),
             img = createElement("img").addClass("img-responsive").attr("src", instructor.getImagePath()),
-            staffName = createElement("p").addClass("staff-member-name"),
-            staffNameWrapper = createElement("div").addClass("staff-name-wrapper");
+            staffName = createElement("p").addClass("staff-member-name");
 
 
         // determine column widths
@@ -169,8 +168,7 @@ function populateInstructorRow(instructorGetter, rowSelector)
 
         // append children
         staffMemberElement.append(imgWrapper.append(img));
-        staffNameWrapper.append(staffName.text(instructor.getInstructorName()))
-        staffMemberElement.append(staffNameWrapper);
+        staffMemberElement.append(staffName.text(instructor.getInstructorName()));
         staffMemberElement.append(createStaffInfo(instructor));
 
         // append to container
@@ -183,49 +181,69 @@ function createStaffInfo(instructorDef)
         return;
 
     var infoContainer = createElement("div").addClass("hidden staff-info"),
-        lectureContainer = createElement("div").addClass("staff-lecture-wrapper"),
-        discussionContainer = createElement("div").addClass("staff-dicussion-wrapper"),
-        websiteContainer = createElement("div").addClass("staff-website-wrapper"),
-        emailContainer = createElement("div").addClass("staff-email-wrapper"),
-        majorsContainer = createElement("div").addClass("staff-majors-wrapper"),
-        minorsContainer = createElement("div").addClass("staff-minors-wrapper"),
-        label,
         content;
 
+
+    // append classes
+    var classInfo = createElement("div").addClass("staff-info-category");
     if (instructorDef.lectures.length)
     {
+        var lectureContainer = createElement("div").addClass("staff-lecture-wrapper");
         appendClasses("Lecture", instructorDef.getLectureSections(), lectureContainer);
-        infoContainer.append(lectureContainer);
+        classInfo.append(lectureContainer);
     }
     if (instructorDef.discussions.length)
     {
+        var discussionContainer = createElement("div").addClass("staff-dicussion-wrapper");
         appendClasses("Discussion", instructorDef.getDiscussionSections(), discussionContainer);
-        infoContainer.append(discussionContainer);
+        classInfo.append(discussionContainer);
     }
+    if (classInfo.children().length)
+        infoContainer.append(classInfo);
+
+ 
+    // append contact info
+    var contactInfo = createElement("div").addClass("staff-info-category");
     if (instructorDef.website)
     {
+        var websiteContainer = createElement("div").addClass("staff-website-wrapper");
         content = createElement("a").attr("href", "http://" + instructorDef.website).text(instructorDef.website);
         websiteContainer.append(content);
         
-        infoContainer.append(websiteContainer);
+        contactInfo.append(websiteContainer);
     }
     if (instructorDef.email)
     {
+        var emailContainer = createElement("div").addClass("staff-email-wrapper");
         content = createElement("a").attr("href", "mailto:" + instructorDef.email).text(instructorDef.email);
         emailContainer.append(content);
 
-        infoContainer.append(emailContainer);
+        contactInfo.append(emailContainer);
     }
+    if (contactInfo.children().length)
+        infoContainer.append(contactInfo);
+
+
+    // append concentration
+    var concentrationInfo = createElement("div").addClass("staff-info-category");
     if (instructorDef.concentration.majors.length)
     {
-        appendConcentration("Major", instructorDef.concentration.majors, majorsContainer);
-        infoContainer.append(majorsContainer);
+        var majorsContainer = createElement("div").addClass("staff-majors-wrapper");
+        appendConcentration("", instructorDef.concentration.majors, majorsContainer);
+        concentrationInfo.append(majorsContainer);
     }
     if (instructorDef.concentration.minors.length)
     {
-        appendConcentration("Minor", instructorDef.concentration.minors, minorsContainer);
-        infoContainer.append(minorsContainer);
+        var label = "Minor in ",
+            minorsContainer = createElement("div").addClass("staff-minors-wrapper");
+        if (instructorDef.concentration.minors.length > 1)
+            label = "Minors in "
+        appendConcentration(label, instructorDef.concentration.minors, minorsContainer);
+        concentrationInfo.append(minorsContainer);
     }
+    if (concentrationInfo.children().length)
+        infoContainer.append(concentrationInfo);
+
 
     return infoContainer;
 }
@@ -264,7 +282,6 @@ function formatClassTime(section)
 
     return formattedTime;
 }
-
 function appendClasses(classType, classArray, container)
 {
     var labelText = classType + (classArray.length > 1 ? "s" : ""),
@@ -277,18 +294,27 @@ function appendClasses(classType, classArray, container)
 
     container.append(label).append(content);
 }
+
 function appendConcentration(concentrationTitle, concentrationArray, container)
 {
     if (concentrationTitle == undefined || concentrationArray == undefined ||
         container == undefined)
         return;
 
-    var labelText = concentrationTitle + (concentrationArray.length > 1 ? "s" : ""),
-        content = createElement("ul"),
+    var labelText = concentrationTitle,// + (concentrationArray.length > 1 ? "s" : ""),
+        content = createElement("span"),
         label = createElement("span").text(labelText);
 
-    for (var i in concentrationArray)
-        content.append(createElement("li").text(concentrationArray[i]));
+    content.append(createElement("span").text(concentrationArray[0]))
+    for (var i = 1; i < concentrationArray.length; i++)
+    {
+        var textVal = concentrationArray[i];
+        if (i == concentrationArray.length - 1)
+            textVal = ", and " + textVal;
+        else
+            textVal = ", " + textVal;
+        content.append(createElement("span").text(textVal));
+    }
 
     container.append(label).append(content);
 }
