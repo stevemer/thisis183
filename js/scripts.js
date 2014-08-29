@@ -27,7 +27,6 @@ function changePage()
 	ga('send', 'pageview', {
 		'page': location.pathname + location.search + location.hash
 	});
-	alert(location.pathname + location.search + location.hash);
 }
 
 function loadPage()
