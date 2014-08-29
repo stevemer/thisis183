@@ -5,14 +5,23 @@ $(document).ready(function()
 	$("#sidebar-wrapper li").click(function()
 	{
 		target = $('> a', this).attr("href");
-		if (target[0] == '#')
+		if ($(this).hasClass('active') && target[0] == '#')
 		{
-			loadPage();
+			changePage();
 		}
 	});
 
-	window.onhashchange = loadPage;
+	window.onhashchange = changePage;
 });
+
+function changePage()
+{
+	loadPage();
+	
+	_gaq.push(['_setAccount', 'UA-54268018-1']);
+	_gaq.push(['_trackPageview', location.pathname + location.search + location.hash]);
+	alert(location.pathname + location.search + location.hash);
+}
 
 function loadPage()
 {
