@@ -25,17 +25,18 @@ body
 }
 
 #wrapper.custom {
-	padding-left: 150px;
+	padding-left: 160px;
 }
 
 #sidebar-wrapper.custom {
-	width: 150px;
+	width: 160px;
 	left: 0px;
 	margin-left: 0px;
+	overflow-x: hidden;
 }
 
 .sidebar-nav.custom {
-	width: 150px;
+	width: 160px;
 }
 
 .sidebar-nav.custom li {
@@ -255,7 +256,7 @@ a:focus:hover
 {
 	float: right;
 	line-height: 40px;
-	margin-right: 10px;
+	margin-right: 16px;
 }
 
 .sidebar-nav .collapsed > .fa-caret-up
