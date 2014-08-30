@@ -17,7 +17,7 @@ body
 }
 
 .hero-unit.custom {
-	background-image: url('../img/header.png');
+	background-image: url('/img/header.png');
 	background-size: auto 100%;
 	background-repeat: no-repeat;
 	background-position: center; 
