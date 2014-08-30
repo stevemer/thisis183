@@ -252,6 +252,33 @@ a:focus:hover
 	padding-top: 8px;
 }
 
+.popover-title
+{
+    text-align: center;
+}
+
+.popover-content ul
+{
+    margin-bottom: 0px;
+    list-style: none;
+    padding-left: 20px;
+}
+
+.popover-content .staff-member-name
+{
+    text-align: center;
+}
+
+.staff-info-category
+{
+    margin-top: 10px;
+}
+
+.staff-info-category:first-child
+{
+    margin-top: 0px;
+}
+
 .sidebar-nav .fa-caret-up
 {
 	float: right;
