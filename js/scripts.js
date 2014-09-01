@@ -10,15 +10,31 @@ $(document).ready(function ()
 
 	$("#sidebar-wrapper li").click(function()
 	{
-		target = $('> a', this).attr("href");
-		if (target[0] == '#')
+		if ($(this).hasClass('active') && target[0] == '#')
 		{
-			loadPage();
+			changePage();
 		}
 	});
 
-	window.onhashchange = loadPage;
+	window.onhashchange = changePage;
 });
+
+function changePage()
+{
+	loadPage();
+	
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	
+	ga('create', 'UA-54268018-1', 'auto');
+	ga('send', 'pageview', {
+		'page': location.pathname + location.search + location.hash
+	});
+}
+
+var LAST_LIVE_POPOVER = undefined;
 
 // repositions visible popover during resize
 $(window).resize(function ()
@@ -28,8 +44,6 @@ $(window).resize(function ()
     
 })
 
-
-var LAST_LIVE_POPOVER = undefined;
 function loadPage()
 {
 	var page = window.location.hash.substring(1);
@@ -55,7 +69,7 @@ function loadPage()
 	
 	$("#sidebar-wrapper li").removeClass("active");
 	$("#" + page + "-button").addClass("active");
-	$('#content').load('../pages/' + page + '.html', function (response, status, xhr)
+	$('#content').load('/pages/' + page + '.html', function (response, status, xhr)
 	{
 	    if (page == "staff" && status == "success")
 	    {

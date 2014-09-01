@@ -30,6 +30,19 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
     <script type="text/javascript" src="js/staff_data.js"></script>
+    
+    <!-- GA -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		
+		ga('create', 'UA-54268018-1', 'auto');
+		ga('send', 'pageview', {
+			'page': location.pathname + location.search + location.hash
+		});
+	</script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -69,8 +82,7 @@
                 </li>
                 <li id="projects-button">
                     <a id="projects-link" data-toggle="collapse" data-target="#project-list" class="collapsed">
-                        <i class="fa fa-file-code-o fa-fw"></i>
-                            &nbsp;Projects&nbsp;
+                        <i class="fa fa-file-code-o fa-fw"></i>&nbsp;Projects
                         <i class="fa fa-fw fa-caret-up"></i>
                     </a>
                     <ul id="project-list" class="collapse">
