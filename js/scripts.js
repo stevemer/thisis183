@@ -10,7 +10,6 @@ $(document).ready(function ()
 
 	$("#sidebar-wrapper li").click(function()
 	{
-		target = $('> a', this).attr("href");
 		if ($(this).hasClass('active') && target[0] == '#')
 		{
 			changePage();
