@@ -187,7 +187,7 @@ Instructor.prototype.getInstructorName = function ()
 Instructor.prototype.getImagePath = function ()
 {
     if (this.hasImage)
-        return _relativeImagePath + this.firstName.toLowerCase() + "_" + this.lastName.toLowerCase() + _imageExtension;
+        return _relativeImagePath + this.firstName.toLowerCase().replace(" ", "") + "_" + this.lastName.toLowerCase().replace(" ", "") + _imageExtension;
     else
         return _relativeImagePath + "default-photo.png";
 };
@@ -222,7 +222,7 @@ Instructor.prototype.getDiscussionSections = function ()
 var _instructors = {
 
     professors: [
-        new Instructor("Mary-Lou", "Dorf", true, [], [], "", "Ph.D.", "mdorf@umich.edu", "", [1, 2], []),
+        new Instructor("Mary Lou", "Dorf", false, [], [], "", "Ph.D.", "mdorf@umich.edu", "", [1, 2], []),
         new Instructor("Jermey", "Gibson", false, [], [], "", "", "", "", [0], []),
         new Instructor("Bill", "Arthur", false, [], [], "", "", "", "", [3], []),
     ],
@@ -231,15 +231,16 @@ var _instructors = {
     GSIs: [
         new Instructor("Adam", "Schnitzer", false, ["Computer Science"], [], "W'15", "", "adamschn@umich.edu", "adamschnitzer.com", [], []),
         new Instructor("Anna", "Wasewicz", false, ["Computer Science"], [], "W'16", "", "wasewicz@umich.edu", "", [], []),
-        new Instructor("Billy", "Wolfington", true, ["Computer Science"], [], "W'15", "", "willwolf@umich.edu", "", [], [0]),
+        new Instructor("Billy", "Wolfington", false, ["Computer Science"], [], "W'15", "", "willwolf@umich.edu", "", [], [0]),
         new Instructor("Carolyn", "Vlach", false, ["Computer Science", "Discrete and Algorithmic Methods", "Spanish"], [], "W'15", "", "vlachcj@umich.edu", "", [], [12]),
         new Instructor("David", "Bonnen", false, ["Computer Science", "Statistics", ], [], "W'15", "", "dbonnen@umich.edu", "", [], [2]),
         new Instructor("Diana", "Slaba", false, ["Computer Science"], [], "W'16", "", "dkslaba@umich.edu", "", [], [7]),
         new Instructor("Grace", "Kendall", false, ["Computer Science"], [], "W'16", "", "", "", [], [6]),
         new Instructor("Jessica", "Wu", false, ["Computer Science"], ["Japanese", "Physics"], "W'16", "", "jesswu@umich.edu", "", [], []),
         new Instructor("Lisa", "Dion", false, ["Computer Science"], [], "2nd year Ph.D.", "", "", "", [], [3]),
+        new Instructor("Madeline", "Andrew", false, ["Computer Science"], [], "W'16", "", "", "", [], []),
         new Instructor("Madeline", "Enders", false, ["Computer Science", "Cello Performance"], [], "W'17", "", "endremad@umich.edu", "", [], [11]),
-        new Instructor("Maxim", "Aleksa", true, ["Computer Science", "Romance Languages and Literatures",], [], "W'17", "", "maximal@umich.edu", "umich.edu/~maximal", [], [8]),
+        new Instructor("Maxim", "Aleksa", false, ["Computer Science", "Romance Languages and Literatures",], [], "W'17", "", "maximal@umich.edu", "umich.edu/~maximal", [], [8]),
         new Instructor("Michael", "Vianueva", false, ["Computer Science", "History"], ["German"], "W'15", "", "vianuevm@umich.edu", "github.com/vianuevm", [], [13]),
         new Instructor("Reed", "Coke", false, ["Computer Science", "Linguistics"], [], "2nd year Ph.D.", "", "reedcoke@umich.edu", "", [], [4]),
         new Instructor("Ryan", "Cesiel", false, ["Computer Science", "BBA",], [], "W'16", "", "ryances@umich.edu", "ryancesiel.com", [], []),
