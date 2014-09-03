@@ -34,7 +34,8 @@ function changePage()
 	});
 }
 
-var LAST_LIVE_POPOVER = undefined;
+var LAST_LIVE_POPOVER = undefined,
+    IS_MOUSE_IN_POPOVER = false;
 
 // repositions visible popover during resize
 $(window).resize(function ()
@@ -81,7 +82,13 @@ function loadPage()
 	    {
 	        populateStaffPage();
             
-            $(".staff-member img").click(togglePopover);
+            $(".staff-member img").hover(togglePopover)
+            .mouseout(function() 
+            {
+                LAST_LIVE_POPOVER.popover("destroy");
+                LAST_LIVE_POPOVER = undefined;
+
+            });
         }
 	});	
 }
