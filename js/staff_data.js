@@ -250,3 +250,23 @@ var _instructors = {
         new Instructor("Timothy", "Lewis", false, ["Computer Science"], [], "1st year Ph.D.", "", "timlewis@umich.edu", "", [], [9,]),
     ],
 };
+
+
+// keep instructors in sorted order for the page
+for (var attr in _instructors)
+{
+    _instructors[attr].sort(function(a, b)
+    {
+        if (a.firstName > b.firstName)
+            return 1;
+        else if (a.firstName < b.firstName)
+            return -1;
+        else
+        {
+            if (a.lastName > b.lastName)
+                return 1;
+            else
+                return -1;
+        }
+    });
+}
