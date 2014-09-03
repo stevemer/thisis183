@@ -50,7 +50,7 @@ function loadPage()
 	var page = window.location.hash.substring(1);
 	
 	// TODO: dynamically figure out which pages are available 
-	var validPages = ['home', 'calendar', 'syllabus', 'resources', 'lectures', 'gradebook', 'autograder', 'staff', '183style', 'piazza', 'oh'];
+	var validPages = ['home', 'calendar', 'syllabus', 'resources', 'lectures', 'gradebook', 'autograder', 'staff', '183style', 'piazza', 'oh', 'logout'];
 	
 	if (page == 'projects')
 	{
