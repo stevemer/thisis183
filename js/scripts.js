@@ -83,8 +83,8 @@ function loadPage()
 	    {
 	        populateStaffPage();
             
-            $(".staff-member img").mouseover(togglePopover)
-            .mouseout(function() 
+            $(".staff-member").mouseover(togglePopover)
+            .mouseleave(function() 
             {
                 setTimeout(function()
                 {
@@ -92,7 +92,7 @@ function loadPage()
                         return;
                     LAST_LIVE_POPOVER.popover("destroy");
                     LAST_LIVE_POPOVER = undefined;
-                }, 50);
+                }, 1);
 
             });
 
@@ -107,7 +107,7 @@ function removeProgressWheel()
 }
 function togglePopover()
 {
-    var currentPopover = $(this);
+    var currentPopover = $(this).find("img");
     if (LAST_LIVE_POPOVER)
     {
         if (LAST_LIVE_POPOVER[0] === currentPopover[0])
@@ -129,6 +129,7 @@ function togglePopover()
     currentPopover.popover(popoverOptions).popover("show");
     LAST_LIVE_POPOVER = currentPopover;
 
+    
     $(".popover").hover(function()
     {
         IS_MOUSE_IN_POPOVER = true;
