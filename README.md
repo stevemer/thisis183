@@ -7,8 +7,7 @@ This is the repository for the website of EECS 183 at the University of Michigan
 
 Where is it?
 =========
-Currently: [http://maxim123.github.io/thisis183/](http://maxim123.github.io/thisis183/)
-Soon: [www.umich.edu/~eecs183](www.umich.edu/~eecs183)
+[www.umich.edu/~eecs183](www.umich.edu/~eecs183)
 
 Credits
 =========
