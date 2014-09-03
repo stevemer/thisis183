@@ -50,11 +50,16 @@ function loadPage()
 	var page = window.location.hash.substring(1);
 	
 	// TODO: dynamically figure out which pages are available 
-	var validPages = ['home', 'calendar', 'syllabus', 'resources', 'lectures', 'gradebook', 'autograder', 'staff', 'style', 'piazza'];
+	var validPages = ['home', 'calendar', 'syllabus', 'resources', 'lectures', 'gradebook', 'autograder', 'staff', '183style', 'piazza', 'oh', 'logout'];
 	
 	if (page == 'projects')
 	{
 		$('#projects-link').click();
+	}
+	
+	if ((page == 'style' || page == '183style') && $('#style-link').hasClass('collapsed'))
+	{
+		$('#style-link').click();
 	}
 	
 	if ($.inArray(page, validPages) === -1)
@@ -70,7 +75,7 @@ function loadPage()
 	
 	$("#sidebar-wrapper li").removeClass("active");
 	$("#" + page + "-button").addClass("active");
-	$('#content').load('/pages/' + page + '.html', function (response, status, xhr)
+	$('#content').load('pages/' + page + '.html', function (response, status, xhr)
 	{
 	    if (page == "staff" && status == "success")
 	    {

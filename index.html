@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    
-    <!-- TODO: add icon here -->
+        
+    <link rel="icon" type="image/png" href="img/icon48.png" />
+    <link rel="apple-touch-icon-precomposed" href="img/iphone.png" />
 
     <title>EECS 183</title>
     <meta name="description" content="EECS 183: Elementary Programming Concepts at University of Michigan.">
@@ -74,8 +75,8 @@
                 <li id="lectures-button">
                     <a href="#lectures"><i class="fa fa-video-camera fa-fw"></i>&nbsp;Lectures</a>
                 </li>
-                <li id="hours-button">
-                    <a href="http://oh-manager.herokuapp.com/" target="_blank"><i class="fa fa-clock-o fa-fw"></i>&nbsp;Office Hours</a>
+                <li id="oh-button">
+                    <a href="#oh"><i class="fa fa-clock-o fa-fw"></i>&nbsp;Office Hours</a>
                 </li>
                 <li id="piazza-button">
                     <a href="#piazza"><i class="fa fa-comments fa-fw"></i>&nbsp;Piazza</a>
@@ -87,10 +88,7 @@
                     </a>
                     <ul id="project-list" class="collapse">
                         <li>
-                            <a href="#">Project 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Project 2</a>
+                            <a href="http://umich.edu/~eecs183/projects/project1/project1.html" target="_blank">Project 1</a>
                         </li>
                     </ul>
                 </li>
@@ -101,10 +99,25 @@
                     <a href="#staff"><i class="fa fa-users fa-fw"></i>&nbsp;Staff</a>
                 </li>
                 <li id="style-button">
-                    <a href="#style"><i class="fa fa-indent fa-fw"></i>&nbsp;Style</a>
+                    <a id="style-link" data-toggle="collapse" data-target="#style-list" class="collapsed">
+                        <i class="fa fa-indent fa-fw"></i>&nbsp;Style
+                        <i class="fa fa-fw fa-caret-up"></i>
+                    </a>
+                    <ul id="style-list" class="collapse">
+                        <li id="183style-button">
+                            <a href="#183style">183style</a>
+                        </li>
+                        <li>
+                            <a href="http://umich.edu/~eecs183/docs/style.html" target="_blank">Style Guide</a>
+                        </li>
+                    </ul>
                 </li>
                 <li id="syllabus-button">
                     <a href="#syllabus"><i class="fa fa-list fa-fw"></i>&nbsp;Syllabus</a>
+                </li>
+                <br>
+                <li id="logout-button">
+                    <a href="#logout"><i class="fa fa-sign-out fa-flip-horizontal fa-fw"></i>&nbsp;Log Out</a>
                 </li>
             </ul>
         </div>
