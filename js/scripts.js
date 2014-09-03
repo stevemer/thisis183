@@ -46,6 +46,7 @@ $(window).resize(function ()
 
 function loadPage()
 {
+    LAST_LIVE_POPOVER = undefined; // reset upon page change
 	var page = window.location.hash.substring(1);
 	
 	// TODO: dynamically figure out which pages are available 
@@ -96,7 +97,6 @@ function togglePopover()
 
         LAST_LIVE_POPOVER.popover("destroy");
         LAST_LIVE_POPOVER = undefined;
-
     }
 
     var popoverOptions = {
@@ -123,7 +123,6 @@ function getGSIs()
 
 var NUM_COLMNS = 12,
     MAX_STAFF_IN_ROW = { // values must be multiples of NUM_COLUMNS
-        lg: 6,
         md: 4,
         sm: 3,
         xs: 2,
