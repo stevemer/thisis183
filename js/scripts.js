@@ -10,6 +10,7 @@ $(document).ready(function ()
 
 	$("#sidebar-wrapper li").click(function()
 	{
+		target = $('> a', this).attr("href");
 		if ($(this).hasClass('active') && target[0] == '#')
 		{
 			changePage();
@@ -75,7 +76,7 @@ function loadPage()
 	
 	$("#sidebar-wrapper li").removeClass("active");
 	$("#" + page + "-button").addClass("active");
-	$('#content').load('/pages/' + page + '.html', function (response, status, xhr)
+	$('#content').load('pages/' + page + '.html', function (response, status, xhr)
 	{
 	    if (page == "staff" && status == "success")
 	    {
