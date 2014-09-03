@@ -1,4 +1,4 @@
-var _relativeImagePath = "../img/staff/",
+var _relativeImagePath = "img/staff/",
     _useDefaultImage = true,
     _imageExtension = ".jpg",
     _lectureSections = [
@@ -231,7 +231,7 @@ var _instructors = {
     GSIs: [
         new Instructor("Adam", "Schnitzer", false, ["Computer Science"], [], "W'15", "", "adamschn@umich.edu", "adamschnitzer.com", [], []),
         new Instructor("Anna", "Wasewicz", false, ["Computer Science"], [], "W'16", "", "wasewicz@umich.edu", "", [], []),
-        new Instructor("Billy", "Wolfington", true, ["Computer Science"], [], "W'15", "", "willwolf@umich.edu", "", [], [1,3]),
+        new Instructor("Billy", "Wolfington", true, ["Computer Science"], [], "W'15", "", "willwolf@umich.edu", "", [], []),
         new Instructor("Carolyn", "Vlach", false, ["Computer Science", "Discrete and Algorithmic Methods", "Spanish"], [], "W'15", "", "vlachcj@umich.edu", "", [], []),
         new Instructor("David", "Bonnen", false, ["Computer Science", "Statistics", ], [], "W'15", "", "dbonnen@umich.edu", "", [], []),
         new Instructor("Diana", "Slaba", false, ["Computer Science"], [], "W'16", "", "dkslaba@umich.edu", "", [], []),
@@ -239,7 +239,7 @@ var _instructors = {
         new Instructor("Jessica", "Wu", false, ["Computer Science"], ["Japanese", "Physics"], "W'16", "", "jesswu@umich.edu", "", [], []),
         new Instructor("Lisa", "Dion", false, ["Computer Science"], [], "2nd year Ph.D.", "", "", "", [], []),
         new Instructor("Madeline", "Enders", false, ["Computer Science", "Cello Performance"], [], "W'17", "", "endremad@umich.edu", "", [], []),
-        new Instructor("Maxim", "Aleksa", true, ["Computer Science", "Romance Languages and Literatures",], ["Master of the Universe"], "W'17", "", "maximal@umich.edu", "umich.edu/~maximal", [3], [5, 2, 3]),
+        new Instructor("Maxim", "Aleksa", true, ["Computer Science", "Romance Languages and Literatures",], [], "W'17", "", "maximal@umich.edu", "umich.edu/~maximal", [], []),
         new Instructor("Michael", "Vianueva", false, ["Computer Science", "History"], ["German"], "W'15", "", "vianuevm@umich.edu", "github.com/vianuevm", [], []),
         new Instructor("Reed", "Coke", false, ["Computer Science", "Linguistics"], [], "2nd year Ph.D.", "", "reedcoke@umich.edu", "", [], []),
         new Instructor("Ryan", "Cesiel", false, ["Computer Science", "BBA",], [], "", "", "ryances@umich.edu", "ryancesiel.com", [], []),
