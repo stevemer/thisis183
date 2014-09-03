@@ -1,4 +1,4 @@
-var _relativeImagePath = "../img/staff/",
+var _relativeImagePath = "img/staff/",
     _useDefaultImage = true,
     _lectureSections = [
         {
