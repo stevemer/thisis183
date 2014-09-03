@@ -48,6 +48,7 @@ $(window).resize(function ()
 function loadPage()
 {
     LAST_LIVE_POPOVER = undefined; // reset upon page change
+    IS_MOUSE_IN_POPOVER = false;
 	var page = window.location.hash.substring(1);
 	
 	// TODO: dynamically figure out which pages are available 
@@ -82,13 +83,20 @@ function loadPage()
 	    {
 	        populateStaffPage();
             
-            $(".staff-member img").hover(togglePopover)
+            $(".staff-member img").mouseover(togglePopover)
             .mouseout(function() 
             {
-                LAST_LIVE_POPOVER.popover("destroy");
-                LAST_LIVE_POPOVER = undefined;
+                setTimeout(function()
+                {
+                    if (IS_MOUSE_IN_POPOVER)
+                        return;
+                    LAST_LIVE_POPOVER.popover("destroy");
+                    LAST_LIVE_POPOVER = undefined;
+                }, 50);
 
             });
+
+
         }
 	});	
 }
@@ -120,6 +128,20 @@ function togglePopover()
     };
     currentPopover.popover(popoverOptions).popover("show");
     LAST_LIVE_POPOVER = currentPopover;
+
+    $(".popover").hover(function()
+    {
+        IS_MOUSE_IN_POPOVER = true;
+    })
+    .mouseleave(function()
+    {
+        IS_MOUSE_IN_POPOVER = false;
+        if (LAST_LIVE_POPOVER)
+        {
+            LAST_LIVE_POPOVER.popover("destroy");
+            LAST_LIVE_POPOVER = undefined;
+        }
+    });
 }
 
 
