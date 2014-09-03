@@ -239,7 +239,7 @@ var _instructors = {
         new Instructor("Jessica", "Wu", false, ["Computer Science"], ["Japanese", "Physics"], "W'16", "", "jesswu@umich.edu", "", [], []),
         new Instructor("Lisa", "Dion", false, ["Computer Science"], [], "2nd year Ph.D.", "", "", "", [], []),
         new Instructor("Madeline", "Enders", false, ["Computer Science", "Cello Performance"], [], "W'17", "", "endremad@umich.edu", "", [], []),
-        new Instructor("Maxim", "Aleksa", true, ["Computer Science", "Romance Languages and Literatures",], ["Master of the Universe"], "W'17", "", "maximal@umich.edu", "umich.edu/~maximal", [3], [5, 2, 3]),
+        new Instructor("Maxim", "Aleksa", true, ["Computer Science", "Romance Languages and Literatures",], [], "W'17", "", "maximal@umich.edu", "umich.edu/~maximal", [], [8]),
         new Instructor("Michael", "Vianueva", false, ["Computer Science", "History"], ["German"], "W'15", "", "vianuevm@umich.edu", "github.com/vianuevm", [], []),
         new Instructor("Reed", "Coke", false, ["Computer Science", "Linguistics"], [], "2nd year Ph.D.", "", "reedcoke@umich.edu", "", [], []),
         new Instructor("Ryan", "Cesiel", false, ["Computer Science", "BBA",], [], "", "", "ryances@umich.edu", "ryancesiel.com", [], []),
