@@ -1,5 +1,5 @@
-var _relativeImagePath = "img/staff/",
-    _useDefaultImage = true,
+var _relativeImagePath = "../img/staff/",
+    _defaultImageName = "default-photo.png",
     _imageExtension = ".jpg",
     _lectureSections = [
         {
@@ -187,7 +187,7 @@ Instructor.prototype.getInstructorName = function ()
 Instructor.prototype.getImagePath = function ()
 {
     if (this.hasImage)
-        return _relativeImagePath + this.firstName.toLowerCase().replace(" ", "") + "_" + this.lastName.toLowerCase().replace(" ", "") + _imageExtension;
+        return _relativeImagePath + this.firstName.toLowerCase().replace(/ /g, "") + "_" + this.lastName.toLowerCase().replace(/ /g, "") + _imageExtension;
     else
         return _relativeImagePath + "default-photo.png";
 };
@@ -253,20 +253,20 @@ var _instructors = {
 
 
 // keep instructors in sorted order for the page
-for (var attr in _instructors)
+_instructors.GSIs.sort(function(a, b)
 {
-    _instructors[attr].sort(function(a, b)
+    if (a.firstName > b.firstName)
+        return 1;
+    else if (a.firstName < b.firstName)
+        return -1;
+    else
     {
-        if (a.firstName > b.firstName)
+        if (a.lastName > b.lastName)
             return 1;
-        else if (a.firstName < b.firstName)
-            return -1;
         else
-        {
-            if (a.lastName > b.lastName)
-                return 1;
-            else
-                return -1;
-        }
-    });
-}
+            return -1;
+    }
+});
+
+
+
