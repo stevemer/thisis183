@@ -17,7 +17,7 @@ body
 }
 
 .hero-unit.custom {
-	background-image: url('/img/header.png');
+	background-image: url('../img/header.png');
 	background-size: auto 100%;
 	background-repeat: no-repeat;
 	background-position: center; 
@@ -45,6 +45,10 @@ body
 	font-size: 24px;
 	line-height: 64px;
 	font-weight: 300;
+}
+
+.sidebar-nav.custom > .sidebar-brand.active {
+	background: none;
 }
 
 .sidebar-nav.custom li {
