@@ -34,9 +34,6 @@ function changePage()
 	});
 }
 
-var LAST_LIVE_POPOVER = undefined,
-    IS_MOUSE_IN_POPOVER = false;
-
 // repositions visible popover during resize
 $(window).resize(function ()
 {
@@ -83,20 +80,19 @@ function loadPage()
 	    {
 	        populateStaffPage();
             
+            // display popover
             $(".staff-member").mouseover(togglePopover)
             .mouseleave(function() 
             {
+                // timeout allows for moving mouse into popover
                 setTimeout(function()
                 {
                     if (IS_MOUSE_IN_POPOVER)
                         return;
-                    LAST_LIVE_POPOVER.popover("destroy");
-                    LAST_LIVE_POPOVER = undefined;
+                    destroyLastPopover();
                 }, 1);
 
             });
-
-
         }
 	});	
 }
@@ -105,6 +101,15 @@ function removeProgressWheel()
 {
 	$('.progress-wheel').remove();
 }
+
+
+
+
+
+/**************** POPOVER FOR STAFF PAGE *****************/
+
+var LAST_LIVE_POPOVER = undefined,
+    IS_MOUSE_IN_POPOVER = false;
 function togglePopover()
 {
     var currentPopover = $(this).find("img");
@@ -114,9 +119,7 @@ function togglePopover()
             // popover already handles toggle, don't need to do anything
             return;
 
-
-        LAST_LIVE_POPOVER.popover("destroy");
-        LAST_LIVE_POPOVER = undefined;
+        destroyLastPopover();
     }
 
     var popoverOptions = {
@@ -130,7 +133,8 @@ function togglePopover()
     LAST_LIVE_POPOVER = currentPopover;
 
     
-    $(".popover").hover(function()
+    // jQuery handler for moving into popover
+    $(".popover").hover(function ()
     {
         IS_MOUSE_IN_POPOVER = true;
     })
@@ -139,13 +143,29 @@ function togglePopover()
         IS_MOUSE_IN_POPOVER = false;
         if (LAST_LIVE_POPOVER)
         {
-            LAST_LIVE_POPOVER.popover("destroy");
-            LAST_LIVE_POPOVER = undefined;
+            destroyLastPopover();
         }
     });
 }
+function destroyLastPopover()
+{
+    LAST_LIVE_POPOVER.popover("destroy");
+    LAST_LIVE_POPOVER = undefined;
+}
 
 
+
+
+
+/**************** POPULATING STAFF PAGE *****************/
+
+var NUM_COLMNS = 12,
+    MAX_STAFF_IN_ROW = { // values must be multiples of NUM_COLUMNS
+        lg: 6,
+        md: 4,
+        sm: 3,
+        xs: 2,
+    };
 function getProfessors()
 {
     return _instructors.professors;
@@ -155,13 +175,6 @@ function getGSIs()
     return _instructors.GSIs;
 }
 
-
-var NUM_COLMNS = 12,
-    MAX_STAFF_IN_ROW = { // values must be multiples of NUM_COLUMNS
-        md: 4,
-        sm: 3,
-        xs: 2,
-    };
 
 function createStaffInfo(instructorDef)
 {
@@ -195,14 +208,6 @@ function createStaffInfo(instructorDef)
 
     // append contact info
     var contactInfo = createElement("div").addClass("staff-info-category");
-    if (instructorDef.website)
-    {
-        var websiteContainer = createElement("div").addClass("staff-website-wrapper");
-        content = createElement("a").attr("href", "http://" + instructorDef.website).text(instructorDef.website);
-        websiteContainer.append(content);
-
-        contactInfo.append(websiteContainer);
-    }
     if (instructorDef.email)
     {
         var emailContainer = createElement("div").addClass("staff-email-wrapper");
@@ -210,6 +215,14 @@ function createStaffInfo(instructorDef)
         emailContainer.append(content);
 
         contactInfo.append(emailContainer);
+    }
+    if (instructorDef.website)
+    {
+        var websiteContainer = createElement("div").addClass("staff-website-wrapper");
+        content = createElement("a").attr("href", "http://" + instructorDef.website).text(instructorDef.website);
+        websiteContainer.append(content);
+
+        contactInfo.append(websiteContainer);
     }
     if (contactInfo.children().length)
         infoContainer.append(contactInfo);
@@ -238,6 +251,86 @@ function createStaffInfo(instructorDef)
 
     return infoContainer;
 }
+
+
+// Requires: timestamp is a string in the format hh:mm[:ss]
+function formatTimeStamp(timestamp)
+{
+    timestamp = timestamp.split(":");
+    timestamp[0] = parseInt(timestamp[0]);
+
+    var daytimeLabel = "am";
+    if (timestamp[0] >= 12)
+        daytimeLabel = "pm";
+    if (timestamp[0] > 12) // convert from 24 hr to 12 hr
+        timestamp[0] -= 12;
+
+    return timestamp[0] + ":" + timestamp[1] + daytimeLabel;
+}
+function formatClassTime(section)
+{
+    var dayAbbrev = section.days[0][0],
+        formattedTime;
+
+
+    // append days of the week
+    formattedTime = dayAbbrev
+    if (dayAbbrev == "T" && section.days[0][1] == "h")
+        formattedTime += "h";
+    for (var i = 1; i < section.days.length; i++)
+    {
+        dayAbbrev = section.days[i][0];
+        if (dayAbbrev == "T" && section.days[i][1] == "h")
+            dayAbbrev += "h";
+        formattedTime += ", " + dayAbbrev;
+    }
+
+
+    // append start and end times
+    var startTime = formatTimeStamp(section.startTime),
+        endTime = formatTimeStamp(section.endTime);
+    formattedTime += " " + startTime + "-" + endTime + " " + section.room;
+
+    return formattedTime;
+}
+function appendClasses(classType, classArray, container)
+{
+    var labelText = classType + (classArray.length > 1 ? "s" : ""),
+        label = createElement("span").text(labelText),
+        content = createElement("ul");
+
+    for (var i in classArray)
+    {
+        content.append(createElement("li").text(formatClassTime(classArray[i])));
+    }
+
+    container.append(label).append(content);
+}
+
+function appendConcentration(concentrationTitle, concentrationArray, container)
+{
+    if (concentrationTitle == undefined || concentrationArray == undefined ||
+        container == undefined)
+        return;
+
+    var labelText = concentrationTitle,
+        content = createElement("span"),
+        label = createElement("span").text(labelText);
+
+    content.append(createElement("span").text(concentrationArray[0]))
+    for (var i = 1; i < concentrationArray.length; i++)
+    {
+        var textVal = concentrationArray[i];
+        if (i == concentrationArray.length - 1) // append and for last in list
+            textVal = ", and " + textVal;
+        else
+            textVal = ", " + textVal;
+        content.append(createElement("span").text(textVal));
+    }
+
+    container.append(label).append(content);
+}
+
 function populateInstructorRow(instructorGetter, rowSelector)
 {
     if (typeof instructorGetter != "function")
@@ -294,86 +387,6 @@ function populateInstructorRow(instructorGetter, rowSelector)
         instructorRow.append(staffMemberElement);
     }
 }
-
-
-// Requires: timestamp is a string in the format hh:mm[:ss]
-function formatTimeStamp(timestamp)
-{
-    timestamp = timestamp.split(":");
-    timestamp[0] = parseInt(timestamp[0]);
-
-    var daytimeLabel = "am";
-    if (timestamp[0] >= 12)
-        daytimeLabel = "pm";
-    if (timestamp[0] > 12) // convert from 24 hr to 12 hr
-        timestamp[0] -= 12;
-
-    return timestamp[0] + ":" + timestamp[1] + daytimeLabel;
-}
-function formatClassTime(section)
-{
-    var dayAbbrev = section.days[0][0],
-        formattedTime;
-
-
-    // append days of the week
-    formattedTime = dayAbbrev
-    if (dayAbbrev == "T" && section.days[0][1] == "h")
-        formattedTime += "h";
-    for (var i = 1; i < section.days.length; i++)
-    {
-        dayAbbrev = section.days[i][0];
-        if (dayAbbrev == "T" && section.days[i][1] == "h")
-            dayAbbrev += "h";
-        formattedTime += ", " + dayAbbrev;
-    }
-
-
-    // append start and end times
-    var startTime = formatTimeStamp(section.startTime),
-        endTime = formatTimeStamp(section.endTime);
-    formattedTime += " " + startTime + "-" + endTime;
-
-    return formattedTime;
-}
-function appendClasses(classType, classArray, container)
-{
-    var labelText = classType + (classArray.length > 1 ? "s" : ""),
-        label = createElement("span").text(labelText),
-        content = createElement("ul");
-
-    for (var i in classArray)
-    {
-        content.append(createElement("li").text(formatClassTime(classArray[i])));
-    }
-
-    container.append(label).append(content);
-}
-
-function appendConcentration(concentrationTitle, concentrationArray, container)
-{
-    if (concentrationTitle == undefined || concentrationArray == undefined ||
-        container == undefined)
-        return;
-
-    var labelText = concentrationTitle,
-        content = createElement("span"),
-        label = createElement("span").text(labelText);
-
-    content.append(createElement("span").text(concentrationArray[0]))
-    for (var i = 1; i < concentrationArray.length; i++)
-    {
-        var textVal = concentrationArray[i];
-        if (i == concentrationArray.length - 1) // append and for last in list
-            textVal = ", and " + textVal;
-        else
-            textVal = ", " + textVal;
-        content.append(createElement("span").text(textVal));
-    }
-
-    container.append(label).append(content);
-}
-
 function populateStaffPage()
 {
     populateInstructorRow(getProfessors, "#professor-row");
