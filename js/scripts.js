@@ -120,7 +120,7 @@ function loadPage()
             {
                 $(".img-wrapper", this).popover("show");
             })
-            .mouseleave(function()
+            .on("mouseleave click", function()
             {
                 $(".img-wrapper", this).popover("hide");
             });
