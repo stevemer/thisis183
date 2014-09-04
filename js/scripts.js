@@ -197,7 +197,7 @@ function createStaffInfo(instructorDef)
     if (instructorDef.website)
     {
         var websiteContainer = createElement("div").addClass("staff-website-wrapper");
-        content = createElement("a").attr("href", "http://" + instructorDef.website).text(instructorDef.website);
+        content = createElement("a").attr("href", instructorDef.website).attr("target","_blank").text(instructorDef.website);
         websiteContainer.append(content);
 
         contactInfo.append(websiteContainer);
@@ -255,11 +255,15 @@ function formatClassTime(section)
     formattedTime = dayAbbrev
     if (dayAbbrev == "T" && section.days[0][1] == "h")
         formattedTime += "h";
+    else if (dayAbbrev == "T" && section.days[0][1] == "u")
+        formattedTime += "u";
     for (var i = 1; i < section.days.length; i++)
     {
         dayAbbrev = section.days[i][0];
         if (dayAbbrev == "T" && section.days[i][1] == "h")
             dayAbbrev += "h";
+	    else if (dayAbbrev == "T" && section.days[0][1] == "u")
+	        formattedTime += "u";
         formattedTime += ", " + dayAbbrev;
     }
 
@@ -299,10 +303,7 @@ function appendConcentration(concentrationTitle, concentrationArray, container)
     for (var i = 1; i < concentrationArray.length; i++)
     {
         var textVal = concentrationArray[i];
-        if (i == concentrationArray.length - 1) // append and for last in list
-            textVal = ", and " + textVal;
-        else
-            textVal = ", " + textVal;
+        textVal = ", " + textVal;
         content.append(createElement("span").text(textVal));
     }
 
