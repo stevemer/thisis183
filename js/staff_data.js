@@ -1,4 +1,4 @@
-var _relativeImagePath = "../img/staff/",
+var _relativeImagePath = "img/staff/",
     _defaultImageName = "default-photo.png",
     _imageExtension = ".jpg",
     _lectureSections = [

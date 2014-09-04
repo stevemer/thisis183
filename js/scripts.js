@@ -175,7 +175,6 @@ function destroyLastPopover()
 
 var NUM_COLMNS = 12,
     MAX_STAFF_IN_ROW = { // values must be multiples of NUM_COLUMNS
-        lg: 6,
         md: 4,
         sm: 3,
         xs: 2,
