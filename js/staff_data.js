@@ -243,7 +243,7 @@ var _instructors = {
 
 
     GSIs: [
-        new Instructor("Adam", "Schnitzer", false, ["Computer Science"], [], "W'15", "", "adamschn@umich.edu", "adamschnitzer.com", [], []),
+        new Instructor("Adam", "Schnitzer", false, ["Computer Science"], [], "W'15", "", "adamschn@umich.edu", "https://adamschnitzer.com", [], []),
         new Instructor("Anna", "Wasewicz", false, ["Computer Science"], [], "W'16", "", "wasewicz@umich.edu", "", [], [16]),
         new Instructor("Billy", "Wolfington", false, ["Computer Science"], [], "W'15", "", "willwolf@umich.edu", "", [], [0]),
         new Instructor("Carolyn", "Vlach", false, ["Computer Science", "Discrete and Algorithmic Methods", "Spanish"], [], "W'15", "", "vlachcj@umich.edu", "", [], [11]),
@@ -252,14 +252,14 @@ var _instructors = {
         new Instructor("Grace", "Kendall", false, ["Computer Science"], ["Music"], "W'16", "", "grackend@umich.edu", "", [], [5]),
         new Instructor("Jessica", "Wu", false, ["Computer Science"], ["Japanese", "Physics"], "W'16", "", "jesswu@umich.edu", "", [], [13]),
         new Instructor("Lisa", "Dion", false, ["Computer Science"], [], "2nd year Ph.D.", "", "lisadion@umich.edu", "", [], [2]),
-        new Instructor("Madeline", "Andrew", false, ["Computer Science"], [], "W'16", "", "madclare@umich.edu", "", [], [15]),
+        new Instructor("Madeline", "Andrew", false, ["Computer Science"], [], "W'16", "", "madclare@umich.edu", "https://github.com/madclare", [], [15]),
         new Instructor("Madeline", "Enders", false, ["Computer Science", "Cello Performance"], [], "W'17", "", "endremad@umich.edu", "", [], [10]),
-        new Instructor("Maxim", "Aleksa", false, ["Computer Science", "Romance Languages and Literatures",], [], "W'17", "", "maximal@umich.edu", "umich.edu/~maximal", [], [7]),
-        new Instructor("Michael", "Vianueva", false, ["Computer Science", "History"], ["German"], "W'15", "", "vianuevm@umich.edu", "github.com/vianuevm", [], [12]),
+        new Instructor("Maxim", "Aleksa", false, ["Computer Science", "Romance Languages and Literatures",], [], "W'17", "", "maximal@umich.edu", "http://umich.edu/~maximal", [], [7]),
+        new Instructor("Michael", "Vianueva", false, ["Computer Science", "History"], ["German"], "W'15", "", "vianuevm@umich.edu", "https://github.com/vianuevm", [], [12]),
         new Instructor("Reed", "Coke", false, ["Computer Science", "Linguistics"], [], "2nd year Ph.D.", "", "reedcoke@umich.edu", "", [], [3]),
         new Instructor("Ryan", "Cesiel", false, ["Computer Science", "BBA",], [], "W'16", "", "ryances@umich.edu", "ryancesiel.com", [], [14]),
         new Instructor("Shibamouli", "Lahiri", false, ["Computer Science"], [], "1st year Ph.D.", "", "lahiri@umich.edu", "", [], [4, 9]),
-        new Instructor("Steve", "Merritt", false, ["Computer Science"], [], "W'15", "", "stevemer@umich.edu", "github.com/stevemer", [], []),
+        new Instructor("Steve", "Merritt", false, ["Computer Science"], [], "W'15", "", "stevemer@umich.edu", "https://github.com/stevemer", [], []),
         new Instructor("Tim", "Wurman", false, ["Computer Science"], [], "W'15", "", "twurman@umich.edu", "", [], [18]),
         new Instructor("Timothy", "Lewis", false, ["Computer Science"], [], "1st year Ph.D.", "", "timlewis@umich.edu", "", [], [17, 8]),
     ],
