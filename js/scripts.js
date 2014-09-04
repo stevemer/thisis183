@@ -10,6 +10,7 @@ $(document).ready(function ()
 
 	$("#sidebar-wrapper li").click(function()
 	{
+		target = $('> a', this).attr("href");
 		if ($(this).hasClass('active') && target[0] == '#')
 		{
 			changePage();
@@ -49,7 +50,20 @@ function loadPage()
 	var page = window.location.hash.substring(1);
 	
 	// TODO: dynamically figure out which pages are available 
-	var validPages = ['home', 'calendar', 'syllabus', 'resources', 'lectures', 'gradebook', 'autograder', 'staff', '183style', 'piazza', 'oh', 'logout'];
+	var validPages = {
+		'home': '',
+		'calendar': 'Calendar',
+		'syllabus': 'Syllabus',
+		'resources': 'Resources',
+		'lectures': 'Lectures',
+		'gradebook': 'Gradebook',
+		'autograder': 'Autograder',
+		'staff': 'Staff',
+		'183style': '183style',
+		'piazza': 'Piazza',
+		'oh': 'Office Hours',
+		'logout': 'Log Out'
+	};
 	
 	if (page == 'projects')
 	{
@@ -61,7 +75,7 @@ function loadPage()
 		$('#style-link').click();
 	}
 	
-	if ($.inArray(page, validPages) === -1)
+	if (!(page in validPages))
 	{
 		page = 'home';
 	}
@@ -69,12 +83,12 @@ function loadPage()
 	document.title = 'EECS 183'
 	if (page != 'home')
 	{
-		document.title += ': ' + page.charAt(0).toUpperCase() + page.substring(1);
+		document.title += ': ' + validPages[page];
 	}
 	
 	$("#sidebar-wrapper li").removeClass("active");
 	$("#" + page + "-button").addClass("active");
-	$('#content').load('/pages/' + page + '.html', function (response, status, xhr)
+	$('#content').load('pages/' + page + '.html', function (response, status, xhr)
 	{
 	    if (page == "staff" && status == "success")
 	    {

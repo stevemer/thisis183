@@ -12,7 +12,7 @@ The website lives at [http://umich.edu/~eecs183](http://umich.edu/~eecs183).
 Credits
 =========
 
-Credit for the initial design goes to [Steve Merritt](http://github.com/stevemer), but the vast majority of the codebase was written by [Maxim Aleksa](http://github.com/maxim123) with the help of [William (Billy) Wolfington](http://github.com/thewolfA2). The website is continuously open to improvement, so feel free to help out!
+Credit for the initial design goes to [Steve Merritt](http://github.com/stevemer), but the vast majority of the codebase was written by [Maxim Aleksa](http://www-personal.umich.edu/~maximal/) with the help of [William (Billy) Wolfington](http://github.com/thewolfA2). The website is continuously open to improvement, so feel free to help out!
 
 License:
 =========
