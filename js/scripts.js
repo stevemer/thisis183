@@ -94,18 +94,35 @@ function loadPage()
 	    {
 	        populateStaffPage();
             
-            // display popover
-            $(".staff-member").mouseover(togglePopover)
-            .mouseleave(function() 
-            {
-                // timeout allows for moving mouse into popover
-                setTimeout(function()
-                {
-                    if (IS_MOUSE_IN_POPOVER)
-                        return;
-                    destroyLastPopover();
-                }, 1);
+            var popoverOptions = {
+                placement: "bottom",
+                trigger: "manual",
+                delay: {"show": 0, "hide":1},
+                title: function() {
+                    return $(this).parents(".staff-member").find(".staff-member-name").html()
+                },
+                content: function() {
+                    return $(this).parents(".staff-member").find(".staff-info").html()
+                },
+                html: true,
+                viewport: "body",
+            };
 
+            // create popover elements attached to img-wrapper
+            $(".staff-member").each(function()
+            {
+                popoverOptions.container = $(this);
+                $(".img-wrapper", this).popover(popoverOptions)
+            });
+
+            // manually display popover on mouseover
+            $(".staff-member").hover(function()
+            {
+                $(".img-wrapper", this).popover("show");
+            })
+            .on("mouseleave click", function()
+            {
+                $(".img-wrapper", this).popover("hide");
             });
         }
 	});	
@@ -115,58 +132,6 @@ function removeProgressWheel()
 {
 	$('.progress-wheel').remove();
 }
-
-
-
-
-
-/**************** POPOVER FOR STAFF PAGE *****************/
-
-var LAST_LIVE_POPOVER = undefined,
-    IS_MOUSE_IN_POPOVER = false;
-function togglePopover()
-{
-    var currentPopover = $(this).find("img");
-    if (LAST_LIVE_POPOVER)
-    {
-        if (LAST_LIVE_POPOVER[0] === currentPopover[0])
-            // popover already handles toggle, don't need to do anything
-            return;
-
-        destroyLastPopover();
-    }
-
-    var popoverOptions = {
-        container: "#wrapper #content",
-        placement: "bottom",
-        title: currentPopover.parents(".staff-member").find(".staff-member-name").html(),
-        content: currentPopover.parents(".staff-member").find(".staff-info").html(),
-        html: true
-    };
-    currentPopover.popover(popoverOptions).popover("show");
-    LAST_LIVE_POPOVER = currentPopover;
-
-    
-    // jQuery handler for moving into popover
-    $(".popover").hover(function ()
-    {
-        IS_MOUSE_IN_POPOVER = true;
-    })
-    .mouseleave(function()
-    {
-        IS_MOUSE_IN_POPOVER = false;
-        if (LAST_LIVE_POPOVER)
-        {
-            destroyLastPopover();
-        }
-    });
-}
-function destroyLastPopover()
-{
-    LAST_LIVE_POPOVER.popover("destroy");
-    LAST_LIVE_POPOVER = undefined;
-}
-
 
 
 
@@ -345,6 +310,7 @@ function appendConcentration(concentrationTitle, concentrationArray, container)
     container.append(label).append(content);
 }
 
+
 function populateInstructorRow(instructorGetter, rowSelector)
 {
     if (typeof instructorGetter != "function")
@@ -370,7 +336,6 @@ function populateInstructorRow(instructorGetter, rowSelector)
             imgWrapper = createElement("div").addClass("img-wrapper"),
             img = createElement("img").addClass("img-responsive").attr("src", instructor.getImagePath()),
             staffName = createElement("p").addClass("staff-member-name");
-
 
         // determine column widths
         for (var attr in MAX_STAFF_IN_ROW)
