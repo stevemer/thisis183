@@ -120,9 +120,13 @@ function loadPage()
             {
                 $(".img-wrapper", this).popover("show");
             })
-            .on("mouseleave click", function()
+            .mouseleave(function()
             {
                 $(".img-wrapper", this).popover("hide");
+            })
+            .click(function() // handles the mobile bug
+            {
+            	$(".img-wrapper", this).popover("toggle");
             });
         }
 	});	
