@@ -7,7 +7,7 @@ This is the repository for the website of EECS 183 at the University of Michigan
 
 Where is it?
 =========
-[www.umich.edu/~eecs183](www.umich.edu/~eecs183)
+The website lives at [http://umich.edu/~eecs183](http://umich.edu/~eecs183).
 
 Credits
 =========
