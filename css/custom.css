@@ -315,3 +315,8 @@ a:focus:hover
     -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
     transform: rotate(180deg);
 }
+
+#deadlines > p
+{
+	margin: 0;
+}

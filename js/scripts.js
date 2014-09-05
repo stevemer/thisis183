@@ -139,6 +139,7 @@ function removeProgressWheel()
 
 
 
+
 /**************** POPULATING STAFF PAGE *****************/
 
 var NUM_COLMNS = 12,
@@ -313,6 +314,7 @@ function appendConcentration(concentrationTitle, concentrationArray, container)
     container.append(label).append(content);
 }
 
+
 function populateInstructorRow(instructorGetter, rowSelector)
 {
     if (typeof instructorGetter != "function")
@@ -338,7 +340,6 @@ function populateInstructorRow(instructorGetter, rowSelector)
             imgWrapper = createElement("div").addClass("img-wrapper"),
             img = createElement("img").addClass("img-responsive").attr("src", instructor.getImagePath()),
             staffName = createElement("p").addClass("staff-member-name");
-
 
         // determine column widths
         for (var attr in MAX_STAFF_IN_ROW)
