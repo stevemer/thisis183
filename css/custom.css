@@ -270,6 +270,16 @@ a:focus:hover
     text-align: center;
 }
 
+.popover
+{
+	color: #333; /*override staff-wrapper color*/
+}
+
+#staff-wrapper .popover a
+{
+	color: #428bca; /*override staff-wrapper color*/
+}
+
 .popover-content ul
 {
     margin-bottom: 0px;
