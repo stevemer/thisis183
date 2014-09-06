@@ -1,11 +1,13 @@
 html
 {
 	min-width: 600px;
+	height: 100%;
 }
 
 body
 {
 	overflow-x: hidden;
+	height: 100%;
 }
 
 .noscript
