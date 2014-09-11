@@ -1,11 +1,13 @@
 html
 {
 	min-width: 600px;
+	height: 100%;
 }
 
 body
 {
 	overflow-x: hidden;
+	height: 100%;
 }
 
 .noscript
@@ -207,7 +209,6 @@ a:focus:hover
 	margin: 0;
 	padding: 16px 16px 160px 16px;
 	background-color: #83c7de;
-	height: 100%;
 	color: white;
 	text-align: center;
 }
@@ -314,9 +315,4 @@ a:focus:hover
     -ms-transform: rotate(180deg); /* IE 9 */
     -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
     transform: rotate(180deg);
-}
-
-#deadlines > p
-{
-	margin: 0;
 }
